@@ -9,7 +9,7 @@ jobs:
       - run: CI=true yarn build
   test:
     docker:
-      - image: circleci/node:12.22.11
+      - image: circleci/node:12.22
     steps:
       - checkout
       - run: yarn install
