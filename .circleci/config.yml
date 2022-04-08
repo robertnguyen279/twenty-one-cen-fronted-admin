@@ -9,7 +9,7 @@ jobs:
       - run: CI=true yarn build
   test:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:12-alpine
     steps:
       - checkout
       - run: yarn install
