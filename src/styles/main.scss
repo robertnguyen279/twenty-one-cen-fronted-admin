@@ -1,0 +1,19 @@
+@import 'variables';
+@import 'mixins';
+@import 'global';
+
+// Taildwind
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+// Antd
+@import 'antd';
+// Components
+@import 'components/Loading';
+@import 'components/Input';
+@import 'components/Button';
+@import 'components/CheckBox';
+
+// Pages
+@import 'pages/Home';

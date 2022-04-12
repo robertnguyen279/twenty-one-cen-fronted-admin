@@ -1,0 +1,85 @@
+.button {
+  background-color: $primary-color;
+  background-image: linear-gradient(90deg, $primary-bold 0, $primary-bold 50%, $primary-color 100%);
+  padding: 0.8em 2em;
+  border-radius: 1em;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    animation: move-linear-gradient 0.3s forwards;
+  }
+
+  &--loading {
+    @extend .button;
+    animation: move-linear-gradient 0.8s infinite forwards;
+  }
+}
+
+@keyframes move-linear-gradient {
+  100% {
+    background-image: linear-gradient(90deg, $primary-color 0, $primary-bold 50%, $primary-bold 100%);
+  }
+  95% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 5%, $primary-bold 100%);
+  }
+  90% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 10%, $primary-bold 100%);
+  }
+  85% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 15%, $primary-bold 100%);
+  }
+  80% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 20%, $primary-bold 100%);
+  }
+  75% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 25%, $primary-bold 100%);
+  }
+  70% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 30%, $primary-bold 100%);
+  }
+  65% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 35%, $primary-bold 100%);
+  }
+  60% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 40%, $primary-bold 100%);
+  }
+  55% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 45%, $primary-bold 100%);
+  }
+  50% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 50%, $primary-bold 100%);
+  }
+  45% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 55%, $primary-bold 100%);
+  }
+  40% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 60%, $primary-bold 100%);
+  }
+  35% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 65%, $primary-bold 100%);
+  }
+  30% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 70%, $primary-bold 100%);
+  }
+  25% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 75%, $primary-bold 100%);
+  }
+  20% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 80%, $primary-bold 100%);
+  }
+  15% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 85%, $primary-bold 100%);
+  }
+  10% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 90%, $primary-bold 100%);
+  }
+  5% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-color 95%, $primary-bold 100%);
+  }
+  0% {
+    background-image: linear-gradient(90deg, $primary-bold 0, $primary-bold 50%, $primary-color 100%);
+  }
+}

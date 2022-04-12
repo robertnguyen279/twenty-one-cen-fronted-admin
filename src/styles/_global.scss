@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  // box-sizing: border-box;
+}
+
+.text-primary {
+  color: $primary-color;
+}
+
+.hover-primary:hover {
+  color: $primary-color;
+}

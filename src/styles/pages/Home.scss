@@ -1,0 +1,66 @@
+.home {
+  font-family: $primary-font;
+
+  &__layer--img {
+    /* Full height */
+    min-height: 100%;
+    width: 100%;
+    position: absolute;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
+
+  &__layer--blur {
+    /* Full height */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    /* Center and scale the image nicely */
+    background-color: black;
+
+    opacity: 0.4;
+  }
+
+  &__container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .login__container {
+    position: absolute;
+    width: 20rem;
+    min-height: 30rem;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    border-radius: 1rem;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+
+    .login__container__button {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .login__title {
+      font-size: x-large;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
+
+@include sm {
+  .home {
+    .login__container {
+      height: 90%;
+      min-height: 20rem;
+    }
+  }
+}

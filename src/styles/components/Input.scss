@@ -1,0 +1,30 @@
+.form__input {
+  min-width: 15rem;
+  min-height: 2.5rem;
+
+  &--error {
+    @extend .form__input;
+
+    input {
+      box-shadow: 0 0 0 0.7px red;
+    }
+  }
+
+  input {
+    border-radius: 1rem;
+    font-size: 0.875rem;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.7px $primary-color;
+    }
+  }
+}
+
+.form__icon-prefix {
+  border-radius: 2.3rem;
+  height: 2.3rem;
+  width: 2.3rem;
+  top: 0.1rem;
+  left: 0.1rem;
+}
