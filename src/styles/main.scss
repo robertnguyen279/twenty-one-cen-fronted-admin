@@ -1,3 +1,4 @@
+@import 'variables';
 @import 'mixins';
 @import 'global';
 
@@ -6,5 +7,13 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+// Antd
+@import 'antd';
 // Components
-@import 'components/Loading.scss';
+@import 'components/Loading';
+@import 'components/Input';
+@import 'components/Button';
+@import 'components/CheckBox';
+
+// Pages
+@import 'pages/Home';
