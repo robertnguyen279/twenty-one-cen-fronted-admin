@@ -1,0 +1,26 @@
+.header {
+  height: 10rem;
+  width: 100%;
+  background-color: $primary-color;
+  border-radius: 0 0 2rem 2rem;
+}
+
+.body {
+  position: relative;
+  top: -3rem;
+
+  .menu_bar {
+    width: 25%;
+  }
+}
+
+@include lg-down {
+  .body {
+    .menu_bar {
+      width: 90%;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
