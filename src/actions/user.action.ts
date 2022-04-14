@@ -2,17 +2,20 @@ import { Action, LoginUser, ErrorType, User } from 'types';
 
 export const Types = {
   GET_USER_SUCCESS: 'user/get-user-success',
+  GET_USERS_SUCCESS: 'user/get-users-success',
   GET_USER: 'user/get-user',
   LOGIN_USER: 'user/login-user',
   ERROR: 'user/error',
-  LOGIN_USER_ERROR: 'user/login-user-error',
-  LOGIN_BY_GOOGLE: 'user/login-by-google',
-  LOGIN_BY_FACEBOOK: 'user/login-by-facebook',
+  GET_USERS: 'users/get-users',
   CREATE_USER: 'user/create-user',
 };
 
 export const getUser = (): Action => ({
   type: Types.GET_USER,
+});
+
+export const getUsers = (): Action => ({
+  type: Types.GET_USERS,
 });
 
 export const getUserSuccess = (user: User): Action<User> => ({
@@ -22,7 +25,14 @@ export const getUserSuccess = (user: User): Action<User> => ({
   },
 });
 
-export const getUserError = (message: string): Action<ErrorType> => ({
+export const getUsersSuccess = (users: Array<User>): Action<Array<User>> => ({
+  type: Types.GET_USERS_SUCCESS,
+  payload: {
+    ...users,
+  },
+});
+
+export const displayError = (message: string): Action<ErrorType> => ({
   type: Types.ERROR,
   payload: { message },
 });
@@ -35,10 +45,3 @@ export const loginUser = ({ emailOrPhone, password, remember }: LoginUser): Acti
     remember,
   },
 });
-
-// export const loginUserError = (error: string): Action => ({
-//   type: Types.LOGIN_USER_ERROR,
-//   payload: {
-//     error,
-//   },
-// });

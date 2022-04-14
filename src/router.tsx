@@ -2,10 +2,11 @@ import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoadingScreen from 'components/LoadingScreen';
 import PrivateRoute from 'components/PrivateRoute';
+import Statistics from 'pages/Statistics';
+import Users from 'pages/Users';
 
 const HomePage = lazy(() => import('pages/Home'));
 const DashBoardLayout = lazy(() => import('components/DashBoardLayout'));
-const Statistics = lazy(() => import('pages/Statistics'));
 
 export default (
   <Suspense fallback={<LoadingScreen />}>
@@ -13,6 +14,7 @@ export default (
       <Route exact path="/" component={HomePage} />
       <DashBoardLayout>
         <PrivateRoute exact path="/dashboard" component={Statistics} />
+        <PrivateRoute exact path="/dashboard/users" component={Users} />
       </DashBoardLayout>
     </Switch>
   </Suspense>

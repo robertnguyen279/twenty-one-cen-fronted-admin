@@ -12,16 +12,17 @@ export default function users(state = INITIAL_STATE, action: Action): any {
         errorMessage: null,
       };
     }
+    case Types.GET_USERS_SUCCESS: {
+      return {
+        ...state,
+        users: action.payload,
+        errorMessage: null,
+      };
+    }
     case Types.ERROR: {
       return {
         ...state,
         errorMessage: action.payload.message,
-      };
-    }
-    case Types.LOGIN_USER_ERROR: {
-      return {
-        ...state,
-        loginUserError: action.payload.error,
       };
     }
 
