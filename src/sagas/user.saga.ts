@@ -9,12 +9,25 @@ function* getUser() {
     const result = yield call(api.getUser);
     yield put(actions.getUserSuccess({ ...result.data.user }));
   } catch (e) {
-    yield put(actions.getUserError(`Không tìm thấy người dùng ${uuid()}`));
+    yield put(actions.displayError(`Không tìm thấy người dùng ${uuid()}`));
+  }
+}
+
+function* watchGetUser() {
+  yield takeEvery(actions.Types.GET_USER, getUser);
+}
+
+function* getUsers() {
+  try {
+    const result = yield call(api.getUsers);
+    yield put(actions.getUsersSuccess({ ...result.data.users }));
+  } catch (e) {
+    yield put(actions.displayError(`Lỗi khi tải dữ liệu ${uuid()}`));
   }
 }
 
 function* watchGetUsers() {
-  yield takeEvery(actions.Types.GET_USER, getUser);
+  yield takeEvery(actions.Types.GET_USERS, getUsers);
 }
 
 function* loginUser(action: Action<LoginUser>) {
@@ -32,7 +45,7 @@ function* loginUser(action: Action<LoginUser>) {
 
     yield put(actions.getUserSuccess({ ...result.data.user }));
   } catch (e) {
-    yield put(actions.getUserError(`${e.response.data.message} ${uuid()}`));
+    yield put(actions.displayError(`${e.response.data.message} ${uuid()}`));
   }
 }
 
@@ -89,6 +102,7 @@ function* watchLoginUser() {
 // }
 
 const userSagas = [
+  fork(watchGetUser),
   fork(watchGetUsers),
   fork(watchLoginUser),
   // fork(watchLoginByGoogle),

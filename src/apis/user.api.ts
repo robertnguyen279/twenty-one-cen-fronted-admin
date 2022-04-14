@@ -3,5 +3,7 @@ import { LoginUser } from 'types';
 
 export const getUser = (): Promise<any> => axios.get(`/user`);
 
+export const getUsers = (): Promise<any> => axios.get(`/user/findUsers?limit=9999`);
+
 export const loginUser = ({ emailOrPhone, password }: LoginUser): Promise<any> =>
   axios.post('/user/login', { emailOrPhone, password });

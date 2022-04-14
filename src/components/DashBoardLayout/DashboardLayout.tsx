@@ -9,7 +9,7 @@ const DashboardLayout = ({ children }: IDashBoardLayout): React.ReactElement => 
       <Header />
       <div className="body lg:flex">
         <MenuBar />
-        <div className="children pt-20">{children}</div>
+        <div className="children pt-10 grow">{children}</div>
       </div>
     </div>
   );
