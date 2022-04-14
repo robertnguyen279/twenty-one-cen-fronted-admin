@@ -28,4 +28,9 @@ export interface ICheckBox {
 
 export interface IPrivateRoute {
   component: React.FC;
+  [x: string]: any;
+}
+
+export interface IDashBoardLayout {
+  children: React.ReactNode;
 }

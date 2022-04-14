@@ -1,18 +1,18 @@
 import React from 'react';
 import Header from './Header';
 import MenuBar from './MenuBar';
-import Content from './Content';
+import { IDashBoardLayout } from 'types';
 
-const Dashboard = (): React.ReactElement => {
+const DashboardLayout = ({ children }: IDashBoardLayout): React.ReactElement => {
   return (
     <div>
       <Header />
       <div className="body lg:flex">
         <MenuBar />
-        <Content />
+        <div className="children pt-20">{children}</div>
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default DashboardLayout;
