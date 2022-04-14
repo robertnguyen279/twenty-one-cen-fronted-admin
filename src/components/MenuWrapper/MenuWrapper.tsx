@@ -9,9 +9,14 @@ import SiteInfoIcon from 'assets/icons/information-svgrepo-com.svg';
 import SettingsIcon from 'assets/icons/setting-svgrepo-com.svg';
 
 const MenuWrapper = (): React.ReactElement => {
+  console.log(window.location.pathname);
   return (
     <div className="menu_wrapper mt-8 p-5 flex flex-wrap">
-      <div className="item flex flex-col items-center justify-center cursor-pointer">
+      <div
+        className={`item${
+          window.location.pathname === '/dashboard' ? '--active' : ''
+        } flex flex-col items-center justify-center cursor-pointer`}
+      >
         <div className="icon">
           <img src={StockIcon} alt="stock" />
         </div>
