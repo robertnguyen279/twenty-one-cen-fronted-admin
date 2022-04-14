@@ -15,8 +15,10 @@ const PrivateRoute = ({ component, ...rest }: IPrivateRoute): React.ReactElement
   const errorMessage = useSelector((state: RootState) => state.userReducer.errorMessage);
 
   useEffect(() => {
-    if (user) {
+    if (user && user.role !== 'user') {
       setLoading(false);
+    } else if (user && user.role === user) {
+      history.push('/');
     } else {
       dispatch(getUser());
     }

@@ -4,9 +4,9 @@ import { Input, CheckBox } from 'components/Form';
 import { RootState } from 'reducers/index.reducer';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import UserIcon from 'assets/icons/user.png';
+import UserIcon from 'assets/icons/user-svgrepo-com.svg';
 import Button from 'components/Button';
-import PasswordIcon from 'assets/icons/password.png';
+import PasswordIcon from 'assets/icons/key-svgrepo-com.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, getUser } from 'actions/user.action';
 import { useHistory } from 'react-router-dom';
@@ -42,8 +42,10 @@ const Home = (): React.ReactElement => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (user && user.role !== 'user') {
       history.push('/dashboard');
+    } else if (user && user.role === 'user') {
+      message.error('Bạn không có quyền đăng nhập');
     } else {
       dispatch(getUser());
     }

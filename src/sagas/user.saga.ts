@@ -9,7 +9,6 @@ function* getUser() {
     const result = yield call(api.getUser);
     yield put(actions.getUserSuccess({ ...result.data.user }));
   } catch (e) {
-    console.log({ ...e });
     yield put(actions.getUserError(`Không tìm thấy người dùng ${uuid()}`));
   }
 }

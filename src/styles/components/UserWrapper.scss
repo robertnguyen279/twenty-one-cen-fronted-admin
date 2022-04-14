@@ -1,0 +1,10 @@
+.user_wrapper {
+  width: 90%;
+  height: 15rem;
+  position: relative;
+  border-radius: 0.5rem;
+  background-color: white;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0em 0em 0.5em 0 $shadow-color;
+}

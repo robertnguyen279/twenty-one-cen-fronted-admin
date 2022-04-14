@@ -7,13 +7,15 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-// Antd
-@import 'antd';
 // Components
 @import 'components/Loading';
 @import 'components/Input';
 @import 'components/Button';
 @import 'components/CheckBox';
+@import 'components/UserWrapper';
+@import 'components/RightHeader';
+@import 'components/MenuWrapper';
+@import 'components/DashBoardLayout';
 
 // Pages
 @import 'pages/Home';
