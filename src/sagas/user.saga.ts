@@ -20,10 +20,9 @@ function* watchGetUser() {
 function* getUsers() {
   try {
     const result = yield call(api.getUsers);
-    console.log(result);
     yield put(actions.getUsersSuccess({ ...result.data.users }));
   } catch (e) {
-    yield put(actions.displayError(`Không tìm thấy người dùng ${uuid()}`));
+    yield put(actions.displayError(`Lỗi khi tải dữ liệu ${uuid()}`));
   }
 }
 

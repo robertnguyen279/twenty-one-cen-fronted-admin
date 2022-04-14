@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react';
-import { Table, Tag, Space } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Table, Tag, Space, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from 'actions/user.action';
 import { RootState } from 'reducers/index.reducer';
 import { Skeleton } from 'antd';
+import { User } from 'types';
+import { transfromInterPhone } from 'services/common.service';
 
 const Users = (): React.ReactElement => {
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.userReducer.users);
+  const error = useSelector((state: RootState) => state.userReducer.errorMessage);
+  const [usersData, setUsersData] = useState();
 
   const columns = [
     {
@@ -24,7 +28,7 @@ const Users = (): React.ReactElement => {
       title: 'Phone',
       dataIndex: 'phone',
       key: 'phone',
-      render: (phone) => <div>{phone ? phone : 'Chưa cập nhật'}</div>,
+      render: (phone) => <div>{phone ? transfromInterPhone(phone.toString()) : 'Chưa cập nhật'}</div>,
     },
     {
       title: 'Vai trò',
@@ -45,8 +49,8 @@ const Users = (): React.ReactElement => {
       key: 'action',
       render: () => (
         <Space size="middle">
-          <a>Sửa</a>
-          <a>Xóa</a>
+          <a className="action_text">Sửa</a>
+          <a className="action_text">Xóa</a>
         </Space>
       ),
     },
@@ -55,12 +59,27 @@ const Users = (): React.ReactElement => {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
-  console.log(users);
+
+  useEffect(() => {
+    if (users) {
+      (Object.values(users) as Array<User>).forEach((user) => {
+        user.key = user._id.toString();
+      });
+    }
+    setUsersData(users);
+  }, [users]);
+
+  useEffect(() => {
+    if (error) {
+      message.error('Lôĩ khi tải dữ liệu');
+    }
+  }, [error]);
+
   return (
     <div>
       <div className="title text-2xl font-bold md:py-20 text-center">Người dùng</div>
       <div className="table p-10 w-full">
-        {users ? <Table columns={columns} dataSource={Object.values(users)} /> : <Skeleton />}
+        {usersData ? <Table columns={columns} dataSource={Object.values(users) as Array<User>} /> : <Skeleton />}
       </div>
     </div>
   );
