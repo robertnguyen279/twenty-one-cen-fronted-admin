@@ -12,3 +12,7 @@ export type LoginUser = {
 export type ErrorType = {
   message: string;
 };
+
+export type DeleteUser = {
+  id: string;
+};

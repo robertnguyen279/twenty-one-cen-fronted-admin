@@ -1,4 +1,4 @@
-import { Action, LoginUser, ErrorType, User } from 'types';
+import { Action, LoginUser, ErrorType, User, DeleteUser } from 'types';
 
 export const Types = {
   GET_USER_SUCCESS: 'user/get-user-success',
@@ -7,7 +7,7 @@ export const Types = {
   LOGIN_USER: 'user/login-user',
   ERROR: 'user/error',
   GET_USERS: 'users/get-users',
-  CREATE_USER: 'user/create-user',
+  DELETE_USER: 'user/delete-user',
 };
 
 export const getUser = (): Action => ({
@@ -44,4 +44,9 @@ export const loginUser = ({ emailOrPhone, password, remember }: LoginUser): Acti
     password,
     remember,
   },
+});
+
+export const deleteUser = (id: string): Action<DeleteUser> => ({
+  type: Types.DELETE_USER,
+  payload: { id },
 });
