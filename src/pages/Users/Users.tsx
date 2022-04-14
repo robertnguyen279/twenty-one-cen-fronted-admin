@@ -1,18 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Tag, Space, message } from 'antd';
+import { Table, Tag, Space, message, Popconfirm } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from 'actions/user.action';
+import { getUsers, deleteUser } from 'actions/user.action';
 import { RootState } from 'reducers/index.reducer';
 import { Skeleton } from 'antd';
 import { User } from 'types';
 import { transfromInterPhone } from 'services/common.service';
+import Button from 'components/Button';
+import EditUser from './EditUser';
 
 const Users = (): React.ReactElement => {
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.userReducer.users);
+  const user = useSelector((state: RootState) => state.userReducer.user);
   const error = useSelector((state: RootState) => state.userReducer.errorMessage);
   const [usersData, setUsersData] = useState();
+  const [editUser, setEditUser] = useState(false);
 
+  const confirmDelete = (id: string) => {
+    dispatch(deleteUser(id));
+  };
+
+  const handleCreateUserClick = () => {
+    setEditUser(true);
+  };
   const columns = [
     {
       title: 'Tên',
@@ -47,10 +58,17 @@ const Users = (): React.ReactElement => {
     {
       title: 'Hành động',
       key: 'action',
-      render: () => (
+      render: (text, record) => (
         <Space size="middle">
           <a className="action_text">Sửa</a>
-          <a className="action_text">Xóa</a>
+          <Popconfirm
+            title="Bạn có chắc muốn xóa không?"
+            onConfirm={() => confirmDelete(record._id)}
+            okText="Có"
+            cancelText="Không"
+          >
+            <a className="action_text">Xóa</a>
+          </Popconfirm>
         </Space>
       ),
     },
@@ -75,9 +93,18 @@ const Users = (): React.ReactElement => {
     }
   }, [error]);
 
-  return (
+  return editUser ? (
+    <EditUser />
+  ) : (
     <div>
       <div className="title text-2xl font-bold md:py-20 text-center">Người dùng</div>
+      {user && user.role === 'admin' && (
+        <div className="flex justify-end pr-10">
+          <Button className="text-sm" onClick={handleCreateUserClick}>
+            Thêm người dùng
+          </Button>
+        </div>
+      )}
       <div className="table p-10 w-full">
         {usersData ? <Table columns={columns} dataSource={Object.values(users) as Array<User>} /> : <Skeleton />}
       </div>
