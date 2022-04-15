@@ -25,6 +25,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@webpack-cli/init": "^1.1.0",
     "add": "^2.0.6",
+    "animate.css": "^4.1.1",
     "antd": "^4.19.5",
     "babel-loader": "^8.2.4",
     "babel-plugin-prismjs": "^2.0.1",

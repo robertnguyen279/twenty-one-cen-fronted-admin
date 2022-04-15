@@ -1,3 +1,12 @@
 .action_text {
   color: $blue-color;
 }
+
+.edit_user {
+  .form {
+    max-width: 30rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

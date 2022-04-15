@@ -12,7 +12,7 @@ const PrivateRoute = ({ component, ...rest }: IPrivateRoute): React.ReactElement
   const history = useHistory();
 
   const user = useSelector((state: RootState) => state.userReducer.user);
-  const errorMessage = useSelector((state: RootState) => state.userReducer.errorMessage);
+  const getUserError = useSelector((state: RootState) => state.userReducer.getUserError);
 
   useEffect(() => {
     if (user && user.role !== 'user') {
@@ -25,12 +25,10 @@ const PrivateRoute = ({ component, ...rest }: IPrivateRoute): React.ReactElement
   }, [user]);
 
   useEffect(() => {
-    if (errorMessage) {
+    if (getUserError) {
       history.push('/');
-    } else {
-      setLoading(false);
     }
-  }, [errorMessage]);
+  }, [getUserError]);
 
   return isLoading ? <LoadingScreen /> : <Route {...rest} component={component} />;
 };

@@ -1,29 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Tag, Space, message, Popconfirm } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers, deleteUser } from 'actions/user.action';
+import { getUsers, deleteUser, deleteUserByAdmmin } from 'actions/user.action';
 import { RootState } from 'reducers/index.reducer';
 import { Skeleton } from 'antd';
 import { User } from 'types';
 import { transfromInterPhone } from 'services/common.service';
 import Button from 'components/Button';
-import EditUser from './EditUser';
+import CreateUser from './CreateUser';
 
 const Users = (): React.ReactElement => {
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.userReducer.users);
   const user = useSelector((state: RootState) => state.userReducer.user);
-  const error = useSelector((state: RootState) => state.userReducer.errorMessage);
+  const getUsersError = useSelector((state: RootState) => state.userReducer.getUsersError);
+  const deleteUserError = useSelector((state: RootState) => state.userReducer.deleteUserError);
+  const deleteUserSuccess = useSelector((state: RootState) => state.userReducer.deleteUserSuccess);
   const [usersData, setUsersData] = useState();
-  const [editUser, setEditUser] = useState(false);
+  const [view, setView] = useState('view');
 
   const confirmDelete = (id: string) => {
-    dispatch(deleteUser(id));
+    if (user.role === 'superviser') {
+      dispatch(deleteUser(id));
+    } else {
+      dispatch(deleteUserByAdmmin(id));
+    }
   };
 
   const handleCreateUserClick = () => {
-    setEditUser(true);
+    setView('create');
   };
+
   const columns = [
     {
       title: 'Tên',
@@ -60,7 +67,7 @@ const Users = (): React.ReactElement => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a className="action_text">Sửa</a>
+          {/* <a className="action_text">Sửa</a> */}
           <Popconfirm
             title="Bạn có chắc muốn xóa không?"
             onConfirm={() => confirmDelete(record._id)}
@@ -88,28 +95,48 @@ const Users = (): React.ReactElement => {
   }, [users]);
 
   useEffect(() => {
-    if (error) {
+    if (getUsersError && getUsersError.includes('Lỗi khi tải dữ liệu')) {
       message.error('Lôĩ khi tải dữ liệu');
     }
-  }, [error]);
+  }, [getUsersError]);
 
-  return editUser ? (
-    <EditUser />
-  ) : (
-    <div>
-      <div className="title text-2xl font-bold md:py-20 text-center">Người dùng</div>
-      {user && user.role === 'admin' && (
-        <div className="flex justify-end pr-10">
-          <Button className="text-sm" onClick={handleCreateUserClick}>
-            Thêm người dùng
-          </Button>
+  useEffect(() => {
+    if (deleteUserError) {
+      message.error('Xóa người dùng thất bại');
+    }
+  }, [deleteUserError]);
+
+  useEffect(() => {
+    if (deleteUserSuccess) {
+      message.success('Xóa người dùng thành công');
+    }
+  }, [deleteUserSuccess]);
+
+  const renderView = () => {
+    if (view === 'view') {
+      return (
+        <div className="animate__animated animate__fadeInRight">
+          <div className="title text-2xl font-bold md:py-20 text-center">Người dùng</div>
+          {user && user.role === 'admin' && (
+            <div className="flex justify-end pr-10">
+              <Button className="text-sm" onClick={handleCreateUserClick}>
+                Thêm người dùng
+              </Button>
+            </div>
+          )}
+          <div className="table p-10 w-full">
+            {usersData ? <Table columns={columns} dataSource={Object.values(users) as Array<User>} /> : <Skeleton />}
+          </div>
         </div>
-      )}
-      <div className="table p-10 w-full">
-        {usersData ? <Table columns={columns} dataSource={Object.values(users) as Array<User>} /> : <Skeleton />}
-      </div>
-    </div>
-  );
+      );
+    } else if (view === 'create') {
+      return <CreateUser handleChangeView={() => setView('view')} />;
+    } else {
+      return <div>Edit</div>;
+    }
+  };
+
+  return renderView();
 };
 
 export default Users;

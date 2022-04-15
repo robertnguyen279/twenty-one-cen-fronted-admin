@@ -17,7 +17,8 @@ const Home = (): React.ReactElement => {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(true);
   const user = useSelector((state: RootState) => state.userReducer.user);
-  const errorMessage = useSelector((state: RootState) => state.userReducer.errorMessage);
+  const loginError = useSelector((state: RootState) => state.userReducer.loginError);
+  const getUserError = useSelector((state: RootState) => state.userReducer.getUserError);
   const history = useHistory();
 
   const formik = useFormik({
@@ -52,18 +53,22 @@ const Home = (): React.ReactElement => {
   }, [user]);
 
   useEffect(() => {
-    if (errorMessage) {
-      setLoading(false);
-
-      if (errorMessage.includes('User not found')) {
+    if (loginError) {
+      if (loginError.includes('User not found')) {
         message.error('Sai tên đăng nhập');
       }
 
-      if (errorMessage.includes('Wrong password')) {
+      if (loginError.includes('Wrong password')) {
         message.error('Sai mật khẩu');
       }
     }
-  }, [errorMessage]);
+  }, [loginError]);
+
+  useEffect(() => {
+    if (getUserError) {
+      setLoading(false);
+    }
+  }, [getUserError]);
 
   return isLoading ? (
     <LoadingScreen />
