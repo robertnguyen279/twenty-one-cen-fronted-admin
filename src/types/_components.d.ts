@@ -34,3 +34,7 @@ export interface IPrivateRoute {
 export interface IDashBoardLayout {
   children: React.ReactNode;
 }
+
+export interface IEditUser {
+  handleChangeView(): void;
+}

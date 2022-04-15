@@ -9,10 +9,18 @@ export type LoginUser = {
   remember?: Array<string>;
 };
 
-export type ErrorType = {
+export type Message = {
   message: string;
 };
 
 export type DeleteUser = {
   id: string;
+};
+
+export type CreateUserByAdmin = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  password: string;
 };
