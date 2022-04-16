@@ -31,6 +31,7 @@ export default function users(state = INITIAL_STATE, action: Action): any {
         getUsersError: null,
         createUserByAdminError: null,
         createUserByAdminSuccess: null,
+        deleteUserSuccess: null,
       };
     }
     case Types.GET_USERS_ERROR: {

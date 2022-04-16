@@ -10,6 +10,27 @@ export interface IInput {
   error: boolean | string | undefined;
 }
 
+export interface IAutoComplete {
+  onChange: (value: string) => void;
+  style?: React.CSSProperties;
+  prefixIcon?: string;
+  options: Array<{ value: string }>;
+  placeholder?: string;
+  className?: string;
+  error: boolean | string | undefined;
+}
+
+export interface ITextarea {
+  onChange: (value: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  style?: React.CSSProperties;
+  prefixIcon?: string;
+  value: string;
+  placeholder?: string;
+  name: string;
+  className?: string;
+  error: boolean | string | undefined;
+}
+
 export interface IButton {
   children: React.ReactNode;
   className?: string;

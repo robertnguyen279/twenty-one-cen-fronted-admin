@@ -14,6 +14,7 @@ Thumbs.db
 
 # Folder config file
 [Dd]esktop.ini
+.env
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/

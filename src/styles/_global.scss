@@ -11,3 +11,14 @@
 .hover-primary:hover {
   color: $primary-color;
 }
+
+.form {
+  max-width: 30rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.test {
+  width: 100%;
+}
