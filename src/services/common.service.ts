@@ -8,3 +8,5 @@ export const removeNull = <T>(obj: T): T => {
   );
   return obj;
 };
+
+export const changeSpaceName = (name: string): string => name.split(' ').join('-').toLowerCase();
