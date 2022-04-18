@@ -1,13 +1,10 @@
-// import 'dotenv/config'; // Allow webpack config file to use .env variables
-
 import path from 'path';
-
 import cssnano from 'cssnano';
 import postcssImport from 'postcss-import';
 import postcssPresetEnv from 'postcss-preset-env';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
-// import DotenvPlugin from 'dotenv-webpack';
+import DotenvPlugin from 'dotenv-webpack';
 import DuplicatePackageCheckerPlugin from 'duplicate-package-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -129,7 +126,7 @@ export default {
     // Enforces case sensitive paths.
     new CaseSensitivePathsPlugin(),
     // Supports dotenv file
-    // new DotenvPlugin(),
+    new DotenvPlugin(),
     // Warns when multiple versions of the same package exist in a build
     new DuplicatePackageCheckerPlugin(),
 

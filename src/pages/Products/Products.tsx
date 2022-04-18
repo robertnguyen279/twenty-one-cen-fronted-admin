@@ -1,4 +1,5 @@
 import React from 'react';
+import CreateProduct from './CreateProduct';
 
 const Products = (): React.ReactElement => {
   const [view] = React.useState('create');
@@ -7,7 +8,7 @@ const Products = (): React.ReactElement => {
     if (view === 'view') {
       return <div>View</div>;
     } else if (view === 'create') {
-      return <div>Create</div>;
+      return <CreateProduct />;
     } else {
       return <div>Edit</div>;
     }

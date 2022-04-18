@@ -7,6 +7,27 @@ export interface IInput {
   placeholder?: string;
   name: string;
   className?: string;
+  error: any;
+}
+
+export interface IAutoComplete {
+  onChange: (value: string) => void;
+  style?: React.CSSProperties;
+  prefixIcon?: string;
+  options: Array<{ value: string }>;
+  placeholder?: string;
+  className?: string;
+  error: boolean | string | undefined;
+}
+
+export interface ITextarea {
+  onChange: (value: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  style?: React.CSSProperties;
+  prefixIcon?: string;
+  value: string;
+  placeholder?: string;
+  name: string;
+  className?: string;
   error: boolean | string | undefined;
 }
 
@@ -37,4 +58,16 @@ export interface IDashBoardLayout {
 
 export interface IEditUser {
   handleChangeView(): void;
+}
+
+export interface IAvailableModal {
+  isModalVisible: boolean;
+  handleModalOk({ size, color, quantity }: { size: string; color: string; quantity: string }): void;
+  handleCancelModal(): void;
+}
+
+export interface IUploadImage {
+  accept: string;
+  error: any;
+  handleUploadSuccess(itemList: Array<string>): void;
 }

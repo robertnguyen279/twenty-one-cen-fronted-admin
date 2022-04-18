@@ -31,3 +31,10 @@ export interface User {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface Category {
+  _id: ObjectId;
+  name: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
