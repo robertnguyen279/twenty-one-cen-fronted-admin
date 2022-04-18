@@ -17,6 +17,7 @@ const UploadImage = ({ accept, error, handleUploadSuccess }: IUploadImage): Reac
 
     uploadToS3(file, (err, url) => {
       if (err) {
+        console.log({ ...err });
         message.error('Upload hình thất bại');
       } else {
         message.success('Upload hình thành công');
