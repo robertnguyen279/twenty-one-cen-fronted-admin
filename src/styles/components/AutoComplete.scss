@@ -47,13 +47,16 @@
 
     input {
       border: none !important;
-      // background-color: transparent !important;
     }
 
     &:focus {
       outline: none;
       box-shadow: 0 0 0 0.7px $primary-color;
     }
+  }
+
+  &--error {
+    @extend .form__autocomplete;
   }
 }
 

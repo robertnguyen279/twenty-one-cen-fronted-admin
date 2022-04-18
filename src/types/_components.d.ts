@@ -7,7 +7,7 @@ export interface IInput {
   placeholder?: string;
   name: string;
   className?: string;
-  error: boolean | string | undefined;
+  error: any;
 }
 
 export interface IAutoComplete {
@@ -58,4 +58,16 @@ export interface IDashBoardLayout {
 
 export interface IEditUser {
   handleChangeView(): void;
+}
+
+export interface IAvailableModal {
+  isModalVisible: boolean;
+  handleModalOk({ size, color, quantity }: { size: string; color: string; quantity: string }): void;
+  handleCancelModal(): void;
+}
+
+export interface IUploadImage {
+  accept: string;
+  error: any;
+  handleUploadSuccess(itemList: Array<string>): void;
 }

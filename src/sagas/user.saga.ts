@@ -99,7 +99,7 @@ function* createUserByAdmin(action: Action<CreateUserByAdmin>) {
       yield put(actions.getUsersSuccess({ ...result.data.users }));
     }
   } catch (e) {
-    yield put(actions.createUserByAdminError(`${e.response.data.message}-createUser-${Date.now()}`));
+    yield put(actions.createUserByAdminError(`${e.response.data.message} ${Date.now()}`));
   }
 }
 

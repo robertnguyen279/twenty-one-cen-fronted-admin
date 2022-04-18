@@ -18,6 +18,18 @@ export default function products(state = INITIAL_STATE, action: Action): any {
         getCategoriesError: `Get category fail ${Date.now()}`,
       };
     }
+    case Types.CREATE_PRODUCT_SUCCESS: {
+      return {
+        ...state,
+        createProductSuccess: `Create product successfully ${Date.now()}`,
+      };
+    }
+    case Types.CREATE_PRODUCT_ERROR: {
+      return {
+        ...state,
+        createProductError: `${action.payload.message} ${Date.now()}`,
+      };
+    }
     default: {
       return state;
     }

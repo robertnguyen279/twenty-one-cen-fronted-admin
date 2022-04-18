@@ -7,6 +7,7 @@ import BlogIcon from 'assets/icons/blog-svgrepo-com.svg';
 import CarouselIcon from 'assets/icons/carousel-horizontal-svgrepo-com.svg';
 import SiteInfoIcon from 'assets/icons/information-svgrepo-com.svg';
 import SettingsIcon from 'assets/icons/setting-svgrepo-com.svg';
+import OrderIcon from 'assets/icons/order-svgrepo-com.svg';
 import { Link } from 'react-router-dom';
 
 const MenuWrapper = (): React.ReactElement => {
@@ -44,6 +45,17 @@ const MenuWrapper = (): React.ReactElement => {
           <img src={ProductIcon} alt="product" />
         </div>
         <div className="text pt-2">Sản phẩm</div>
+      </Link>
+      <Link
+        className={`item${
+          window.location.pathname === '/dashboard/orders' ? '--active' : ''
+        } flex flex-col items-center justify-center cursor-pointer`}
+        to="/dashboard/orders"
+      >
+        <div className="icon">
+          <img src={OrderIcon} alt="order" />
+        </div>
+        <div className="text pt-2">Đơn hàng</div>
       </Link>
       <Link
         className={`item${

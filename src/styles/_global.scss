@@ -8,6 +8,10 @@
   color: $primary-color;
 }
 
+.text-blue {
+  color: $blue-color;
+}
+
 .hover-primary:hover {
   color: $primary-color;
 }
@@ -21,4 +25,8 @@
 
 .test {
   width: 100%;
+}
+
+.ant-btn-primary {
+  background-color: #1890ff !important;
 }

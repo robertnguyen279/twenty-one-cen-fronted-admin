@@ -20,6 +20,10 @@
       box-shadow: 0 0 0 0.7px $primary-color;
     }
   }
+
+  &--error {
+    @extend .form__textarea;
+  }
 }
 
 .form__icon-prefix {

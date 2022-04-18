@@ -24,3 +24,13 @@ export type CreateUserByAdmin = {
   role: string;
   password: string;
 };
+
+export type CreateProduct = {
+  name: string;
+  description: string;
+  price: string;
+  pictures: Array<any>;
+  available: Array<any>;
+  discount: string;
+  category: string;
+};
