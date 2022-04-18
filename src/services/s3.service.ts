@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 import imageCompression from 'browser-image-compression';
+import { changeSpaceName } from './common.service';
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -12,7 +13,8 @@ const bucket = new AWS.S3({
 });
 
 export const uploadToS3 = (file: File, callback: (err, url?: string) => void): void => {
-  const key = `${file.name.split('.')[0]}-${Date.now()}.png`;
+  const fortmattedName = changeSpaceName(file.name);
+  const key = `${fortmattedName.split('.')[0]}-${Date.now()}.png`;
   const options = {
     maxSizeMB: 10,
     maxWidthOrHeight: 1920,
