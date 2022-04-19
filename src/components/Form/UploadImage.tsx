@@ -18,6 +18,7 @@ const UploadImage = ({ accept, error, handleUploadSuccess }: IUploadImage): Reac
 
     compressImage(file, (err, compressFile) => {
       if (err) {
+        console.log({ ...err });
         message.error('Upload hình thất bại');
       } else {
         const bodyFormData = new FormData();
