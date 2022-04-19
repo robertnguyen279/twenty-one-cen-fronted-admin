@@ -57,9 +57,7 @@ function* deleteUser(action: Action<DeleteUser>) {
     const { id } = action.payload;
     const result = yield call(api.deleteUser, id);
     if (result.data.message.includes('successfully')) {
-      const result = yield call(api.getUsers);
       yield put(actions.deleteUserSuccess());
-      yield put(actions.getUsersSuccess({ ...result.data.users }));
     }
   } catch (e) {
     yield put(actions.deleteUserError(`Xóa người dùng thất bại ${Date.now()}`));
@@ -75,9 +73,7 @@ function* deleteUserByAdmin(action: Action<DeleteUser>) {
     const { id } = action.payload;
     const result = yield call(api.deleteUserByAdmin, id);
     if (result.data.message.includes('successfully')) {
-      const result = yield call(api.getUsers);
       yield put(actions.deleteUserSuccess());
-      yield put(actions.getUsersSuccess({ ...result.data.users }));
     }
   } catch (e) {
     yield put(actions.deleteUserError(`Xóa người dùng thất bại ${Date.now()}`));
@@ -94,9 +90,7 @@ function* createUserByAdmin(action: Action<CreateUserByAdmin>) {
     const result = yield call(api.createUserByAdmin, { email, firstName, lastName, password, role });
 
     if (result.data.message.includes('success')) {
-      const result = yield call(api.getUsers);
       yield put(actions.createUserByAdminSuccess());
-      yield put(actions.getUsersSuccess({ ...result.data.users }));
     }
   } catch (e) {
     yield put(actions.createUserByAdminError(`${e.response.data.message} ${Date.now()}`));

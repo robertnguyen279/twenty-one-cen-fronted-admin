@@ -23,8 +23,10 @@
   transform: translateX(-50%);
 }
 
-.test {
-  width: 100%;
+@include xs {
+  .form {
+    max-width: 90%;
+  }
 }
 
 .ant-btn-primary {

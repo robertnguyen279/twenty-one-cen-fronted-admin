@@ -27,6 +27,7 @@ const UploadImage = ({ accept, error, handleUploadSuccess }: IUploadImage): Reac
           .post('/upload', bodyFormData)
           .then((response) => {
             setImageList((preState) => [...preState, response.data.url]);
+            message.success('Upload hình thành công');
           })
           .catch(() => {
             message.error('Upload hình thất bại');
