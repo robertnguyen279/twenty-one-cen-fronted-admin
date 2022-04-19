@@ -117,7 +117,7 @@ const Products = (): React.ReactElement => {
       return (
         <div className="animate__animated animate__fadeInRight">
           <div className="title md:pt-20 mb-10 text-center font-bold text-2xl">Sản phẩm</div>
-          <div className="flex justify-end pr-10">
+          <div className="flex justify-end md:pr-10">
             <Button className="text-sm" onClick={handleCreateProductClick}>
               Thêm sản phẩm
             </Button>

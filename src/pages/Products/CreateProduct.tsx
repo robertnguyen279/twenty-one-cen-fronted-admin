@@ -109,6 +109,7 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
   React.useEffect(() => {
     if (createProductSuccess) {
       message.success('Tạo sản phẩm thành công');
+      handleChangeView();
     }
   }, [createProductSuccess]);
 
