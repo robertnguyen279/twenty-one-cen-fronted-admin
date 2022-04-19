@@ -1,8 +1,9 @@
 import React from 'react';
 import CloseIcon from 'assets/icons/close-svgrepo-com.svg';
-import { uploadToS3 } from 'services/s3.service';
+import compressImage from 'services/compress.service';
 import { message } from 'antd';
 import { IUploadImage } from 'types';
+import axios from 'services/axios.service';
 
 const UploadImage = ({ accept, error, handleUploadSuccess }: IUploadImage): React.ReactElement => {
   const [imageList, setImageList] = React.useState([]);
@@ -15,14 +16,23 @@ const UploadImage = ({ accept, error, handleUploadSuccess }: IUploadImage): Reac
     const target = e.target as HTMLInputElement;
     const file = target.files[0];
 
-    uploadToS3(file, (err, url) => {
+    compressImage(file, (err, compressFile) => {
       if (err) {
         console.log({ ...err });
         message.error('Upload hình thất bại');
       } else {
-        message.success('Upload hình thành công');
-        setImageList((preState) => [...preState, url]);
-        handleUploadSuccess;
+        const bodyFormData = new FormData();
+        bodyFormData.append('file', compressFile);
+
+        axios
+          .post('/upload', bodyFormData)
+          .then((response) => {
+            setImageList((preState) => [...preState, response.data.url]);
+            message.success('Upload hình thành công');
+          })
+          .catch(() => {
+            message.error('Upload hình thất bại');
+          });
       }
     });
   };

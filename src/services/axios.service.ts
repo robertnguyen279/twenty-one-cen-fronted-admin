@@ -9,8 +9,6 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (req): Promise<typeof req> => {
-    // console.log(authTokens);
-    // if (!authTokens) {
     const authTokens = localStorage.getItem('21cenAuthTokens')
       ? JSON.parse(localStorage.getItem('21cenAuthTokens'))
       : null;
@@ -25,9 +23,7 @@ axiosInstance.interceptors.request.use(
 
     if (Date.now() <= user.exp * 1000) {
       return req;
-    }
-
-    try {
+    } else {
       const response = await axios.post(`${baseURL}/user/token/`, {
         token: authTokens.refreshToken,
       });
@@ -37,8 +33,6 @@ axiosInstance.interceptors.request.use(
         JSON.stringify({ accessToken: response.data.accessToken, refreshToken: response.data.refreshToken }),
       );
       req.headers.Authorization = `Bearer ${response.data.accessToken}`;
-    } catch (error) {
-      console.error(error);
     }
 
     return req;

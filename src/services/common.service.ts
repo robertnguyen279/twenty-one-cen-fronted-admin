@@ -9,4 +9,21 @@ export const removeNull = <T>(obj: T): T => {
   return obj;
 };
 
-export const changeSpaceName = (name: string): string => name.split(' ').join('-').toLowerCase();
+export const currentcyFormatter = new Intl.NumberFormat('vn-VN', {
+  style: 'currency',
+  currency: 'VND',
+  minimumFractionDigits: 0,
+});
+
+export const convertDate = (dateInput: Date): string => {
+  const date = new Date(dateInput);
+  const year = date.getFullYear();
+
+  let month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+
+  let day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+
+  return day + '/' + month + '/' + year;
+};

@@ -18,6 +18,21 @@ export default function products(state = INITIAL_STATE, action: Action): any {
         getCategoriesError: `Get category fail ${Date.now()}`,
       };
     }
+    case Types.GET_PRODUCTS_SUCCESS: {
+      return {
+        ...state,
+        products: action.payload,
+        getProductsError: null,
+        deleteProductError: null,
+        deleteProductSuccess: null,
+      };
+    }
+    case Types.GET_PRODUCTS_ERROR: {
+      return {
+        ...state,
+        getProductsError: `${action.payload.message} ${Date.now()}`,
+      };
+    }
     case Types.CREATE_PRODUCT_SUCCESS: {
       return {
         ...state,
@@ -28,6 +43,18 @@ export default function products(state = INITIAL_STATE, action: Action): any {
       return {
         ...state,
         createProductError: `${action.payload.message} ${Date.now()}`,
+      };
+    }
+    case Types.DELETE_PRODUCT_SUCCESS: {
+      return {
+        ...state,
+        deleteProductSuccess: `Delete product successfully ${Date.now()}`,
+      };
+    }
+    case Types.DELETE_PRODUCT_ERROR: {
+      return {
+        ...state,
+        deleteProductError: `Delete product failed ${Date.now()}`,
       };
     }
     default: {

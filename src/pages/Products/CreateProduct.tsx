@@ -15,8 +15,9 @@ import CancelButton from 'components/CancelButton';
 import { removeNull } from 'services/common.service';
 import { message } from 'antd';
 import { createProduct } from 'actions/product.action';
+import { ICreateProduct } from 'types';
 
-const CreateProduct = (): React.ReactElement => {
+const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement => {
   const dispatch = useDispatch();
   const [options, setOptions] = React.useState([]);
   const [availableList, setAvailableList] = React.useState([]);
@@ -122,7 +123,7 @@ const CreateProduct = (): React.ReactElement => {
   return (
     <div className="animate__animated animate__fadeInRight">
       <div className="title md:pt-20 mb-10 text-center font-bold text-2xl">Tạo sản phẩm</div>
-      <form onSubmit={formik.handleSubmit} className="form pr-10">
+      <form onSubmit={formik.handleSubmit} className="form md:pr-10">
         <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Tên sản phẩm</div>
         <Input
           type="text"
@@ -202,7 +203,9 @@ const CreateProduct = (): React.ReactElement => {
           error={formik.errors.discount && formik.touched.discount ? formik.errors.discount : false}
         />
         <div className="submit_buttons pt-5 flex justify-center items-center">
-          <CancelButton className="mx-2">Hủy</CancelButton>
+          <CancelButton className="mx-2" onClick={handleChangeView}>
+            Hủy
+          </CancelButton>
           <Button type="submit" className="mx-2">
             Tạo sản phẩm
           </Button>

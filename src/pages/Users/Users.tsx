@@ -16,7 +16,7 @@ const Users = (): React.ReactElement => {
   const getUsersError = useSelector((state: RootState) => state.userReducer.getUsersError);
   const deleteUserError = useSelector((state: RootState) => state.userReducer.deleteUserError);
   const deleteUserSuccess = useSelector((state: RootState) => state.userReducer.deleteUserSuccess);
-  const [usersData, setUsersData] = useState();
+  const [usersData, setUsersData] = useState([]);
   const [view, setView] = useState('view');
 
   const confirmDelete = (id: string) => {
@@ -87,11 +87,12 @@ const Users = (): React.ReactElement => {
 
   useEffect(() => {
     if (users) {
-      (Object.values(users) as Array<User>).forEach((user) => {
-        user.key = user._id.toString();
-      });
+      const userData = (Object.values(users) as Array<User>).map((user) => ({
+        key: user._id.toString(),
+        ...user,
+      }));
+      setUsersData(userData);
     }
-    setUsersData(users);
   }, [users]);
 
   useEffect(() => {
@@ -109,6 +110,7 @@ const Users = (): React.ReactElement => {
   useEffect(() => {
     if (deleteUserSuccess) {
       message.success('Xóa người dùng thành công');
+      dispatch(getUsers());
     }
   }, [deleteUserSuccess]);
 
@@ -125,7 +127,7 @@ const Users = (): React.ReactElement => {
             </div>
           )}
           <div className="table p-10 w-full">
-            {usersData ? <Table columns={columns} dataSource={Object.values(users) as Array<User>} /> : <Skeleton />}
+            {usersData.length ? <Table columns={columns} dataSource={usersData} /> : <Skeleton />}
           </div>
         </div>
       );

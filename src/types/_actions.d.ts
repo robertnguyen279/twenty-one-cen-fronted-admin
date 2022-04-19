@@ -34,3 +34,7 @@ export type CreateProduct = {
   discount: string;
   category: string;
 };
+
+export type DeleteProduct = {
+  id: string;
+};

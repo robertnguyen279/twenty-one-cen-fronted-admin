@@ -38,3 +38,42 @@ export interface Category {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export enum Size {
+  XS = 'XS',
+  S = 'S',
+  M = 'M',
+  L = 'L',
+  XL = 'XL',
+}
+
+export type Picure = {
+  pictureUrl: string;
+  description: string;
+};
+
+export interface SizeColorQuantity {
+  _id: ObjectId;
+  size: Size;
+  color: string;
+  quantity: number;
+}
+
+export interface Product {
+  _id: ObjectId;
+  name: string;
+  noToneName: string;
+  description: string;
+  urlString: string;
+  discount: number;
+  pictures: Array<Picure>;
+  price: number;
+  sold: number;
+  category: {
+    _id: ObjectId;
+    name: string;
+  };
+  available: Array<SizeColorQuantity>;
+  createdAt: Date;
+  updatedAt: Date;
+}

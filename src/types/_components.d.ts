@@ -71,3 +71,7 @@ export interface IUploadImage {
   error: any;
   handleUploadSuccess(itemList: Array<string>): void;
 }
+
+export interface ICreateProduct {
+  handleChangeView(): void;
+}

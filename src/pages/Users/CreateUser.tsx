@@ -5,7 +5,7 @@ import { Input } from 'components/Form';
 import { Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'reducers/index.reducer';
-import { createUserByAdmin } from 'actions/user.action';
+import { createUserByAdmin, getUsers } from 'actions/user.action';
 import { IEditUser } from 'types';
 import { message } from 'antd';
 import Button from 'components/Button';
@@ -64,6 +64,7 @@ const CreateUser = ({ handleChangeView }: IEditUser): React.ReactElement => {
   React.useEffect(() => {
     if (createUserByAdminSuccess) {
       message.success('Thêm người dùng thành công');
+      dispatch(getUsers());
       handleChangeView();
     }
   }, [createUserByAdminSuccess]);
@@ -71,7 +72,7 @@ const CreateUser = ({ handleChangeView }: IEditUser): React.ReactElement => {
   return (
     <div className="edit_user animate__animated animate__fadeInRight">
       <div className="title text-2xl font-bold md:pt-20 pb-10 text-center">Thêm người dùng</div>
-      <form onSubmit={formik.handleSubmit} className="form pr-10">
+      <form onSubmit={formik.handleSubmit} className="form md:pr-10">
         <div className="form_title pt-2 text-sm pb-2 text-left font-normal pl-2">Email</div>
         <Input
           type="text"
