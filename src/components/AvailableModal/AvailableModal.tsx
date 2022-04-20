@@ -18,8 +18,9 @@ const AvailableModal = ({ isModalVisible, handleModalOk, handleCancelModal }: IA
       size: Yup.string().required('Bạn phải nhập mục này'),
       quantity: Yup.number().required('Bạn phải nhập mục này'),
     }),
-    onSubmit: ({ size, color, quantity }) => {
+    onSubmit: ({ size, color, quantity }, { resetForm }) => {
       handleModalOk({ size, color, quantity });
+      resetForm();
     },
   });
 

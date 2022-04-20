@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 export interface IInput {
   type: string;
   onChange: (value: React.FormEvent<HTMLInputElement>) => void;
@@ -74,4 +75,9 @@ export interface IUploadImage {
 
 export interface ICreateProduct {
   handleChangeView(): void;
+}
+
+export interface IEditProduct {
+  handleChangeView(): void;
+  productId: ObjectId;
 }

@@ -15,9 +15,10 @@ import CancelButton from 'components/CancelButton';
 import { removeNull } from 'services/common.service';
 import { message } from 'antd';
 import { createProduct, getProducts } from 'actions/product.action';
-import { ICreateProduct } from 'types';
+import { IEditProduct } from 'types';
 
-const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement => {
+const EditProduct = ({ handleChangeView, productId }: IEditProduct): React.ReactElement => {
+  console.log(productId);
   const dispatch = useDispatch();
   const [options, setOptions] = React.useState([]);
   const [availableList, setAvailableList] = React.useState([]);
@@ -46,6 +47,7 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
     }),
     onSubmit: (submitObject) => {
       const cleanSubmitObject = removeNull(submitObject);
+      console.log(cleanSubmitObject);
       dispatch(createProduct(cleanSubmitObject));
     },
   });
@@ -202,4 +204,4 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
   );
 };
 
-export default CreateProduct;
+export default EditProduct;
