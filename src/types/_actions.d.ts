@@ -31,7 +31,6 @@ export type CreateProduct = {
   price: string;
   pictures: Array<any>;
   available: Array<any>;
-  discount: string;
   category: string;
 };
 

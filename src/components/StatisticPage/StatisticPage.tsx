@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Statistics = (): React.ReactElement => {
+const StatisticPage = (): React.ReactElement => {
   return (
     <div>
       <div className="title text-2xl font-bold md:py-20 text-center">Thống kê</div>
@@ -9,4 +9,4 @@ const Statistics = (): React.ReactElement => {
   );
 };
 
-export default Statistics;
+export default StatisticPage;

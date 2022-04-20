@@ -8,7 +8,7 @@ import { Table, Space, message, Popconfirm, Skeleton } from 'antd';
 import { currentcyFormatter, convertDate } from 'services/common.service';
 import { Product } from 'types';
 
-const Products = (): React.ReactElement => {
+const ProductPage = (): React.ReactElement => {
   const [view, setView] = React.useState('view');
   const [productList, setProductList] = React.useState([]);
   const dispatch = useDispatch();
@@ -80,7 +80,6 @@ const Products = (): React.ReactElement => {
   React.useEffect(() => {
     dispatch(getProducts());
   }, []);
-  console.log(products);
 
   React.useEffect(() => {
     if (getProductsError) {
@@ -117,7 +116,7 @@ const Products = (): React.ReactElement => {
       return (
         <div className="animate__animated animate__fadeInRight">
           <div className="title md:pt-20 mb-10 text-center font-bold text-2xl">Sản phẩm</div>
-          <div className="flex justify-end md:pr-10">
+          <div className="flex justify-end pr-10">
             <Button className="text-sm" onClick={handleCreateProductClick}>
               Thêm sản phẩm
             </Button>
@@ -136,4 +135,4 @@ const Products = (): React.ReactElement => {
   return renderView();
 };
 
-export default Products;
+export default ProductPage;

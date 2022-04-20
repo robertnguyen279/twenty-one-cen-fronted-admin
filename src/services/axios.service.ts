@@ -23,7 +23,9 @@ axiosInstance.interceptors.request.use(
 
     if (Date.now() <= user.exp * 1000) {
       return req;
-    } else {
+    }
+
+    try {
       const response = await axios.post(`${baseURL}/user/token/`, {
         token: authTokens.refreshToken,
       });
@@ -33,6 +35,8 @@ axiosInstance.interceptors.request.use(
         JSON.stringify({ accessToken: response.data.accessToken, refreshToken: response.data.refreshToken }),
       );
       req.headers.Authorization = `Bearer ${response.data.accessToken}`;
+    } catch (error) {
+      console.log({ ...error });
     }
 
     return req;
