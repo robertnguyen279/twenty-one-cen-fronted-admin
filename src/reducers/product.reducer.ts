@@ -25,6 +25,7 @@ export default function products(state = INITIAL_STATE, action: Action): any {
         getProductsError: null,
         deleteProductError: null,
         deleteProductSuccess: null,
+        createProductSuccess: null,
       };
     }
     case Types.GET_PRODUCTS_ERROR: {

@@ -56,10 +56,10 @@ const Home = (): React.ReactElement => {
     if (loginError) {
       if (loginError.includes('User not found')) {
         message.error('Sai tên đăng nhập');
-      }
-
-      if (loginError.includes('Wrong password')) {
+      } else if (loginError.includes('Wrong password')) {
         message.error('Sai mật khẩu');
+      } else {
+        message.error(loginError);
       }
     }
   }, [loginError]);

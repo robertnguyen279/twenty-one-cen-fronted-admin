@@ -9,7 +9,7 @@ import { transfromInterPhone } from 'services/common.service';
 import Button from 'components/Button';
 import CreateUser from './CreateUser';
 
-const Users = (): React.ReactElement => {
+const UserPage = (): React.ReactElement => {
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.userReducer.users);
   const user = useSelector((state: RootState) => state.userReducer.user);
@@ -120,7 +120,7 @@ const Users = (): React.ReactElement => {
         <div className="animate__animated animate__fadeInRight">
           <div className="title text-2xl font-bold md:py-20 py-10 text-center">Người dùng</div>
           {user && user.role === 'admin' && (
-            <div className="flex justify-end md:pr-10">
+            <div className="flex justify-end pr-10">
               <Button className="text-sm" onClick={handleCreateUserClick}>
                 Thêm người dùng
               </Button>
@@ -141,4 +141,4 @@ const Users = (): React.ReactElement => {
   return renderView();
 };
 
-export default Users;
+export default UserPage;

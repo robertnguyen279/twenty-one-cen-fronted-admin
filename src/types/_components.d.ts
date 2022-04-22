@@ -14,6 +14,7 @@ export interface IAutoComplete {
   onChange: (value: string) => void;
   style?: React.CSSProperties;
   prefixIcon?: string;
+  initialValue?: string;
   options: Array<{ value: string }>;
   placeholder?: string;
   className?: string;
@@ -69,9 +70,15 @@ export interface IAvailableModal {
 export interface IUploadImage {
   accept: string;
   error: any;
+  initialPictures?: Array<string>;
   handleUploadSuccess(itemList: Array<string>): void;
 }
 
 export interface ICreateProduct {
   handleChangeView(): void;
+}
+
+export interface IEditProduct {
+  handleChangeView(): void;
+  productUrl: string;
 }

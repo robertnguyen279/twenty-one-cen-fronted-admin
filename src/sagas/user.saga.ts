@@ -34,7 +34,6 @@ function* loginUser(action: Action<LoginUser>) {
     const { emailOrPhone, password, remember } = action.payload;
 
     const result = yield call(api.loginUser, { emailOrPhone, password });
-
     if (remember) {
       localStorage.setItem(
         '21cenAuthTokens',

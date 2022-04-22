@@ -14,7 +14,7 @@ import Button from 'components/Button';
 import CancelButton from 'components/CancelButton';
 import { removeNull } from 'services/common.service';
 import { message } from 'antd';
-import { createProduct } from 'actions/product.action';
+import { createProduct, getProducts } from 'actions/product.action';
 import { ICreateProduct } from 'types';
 
 const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement => {
@@ -35,7 +35,6 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
       price: '',
       pictures: [],
       available: [],
-      discount: '',
     },
     validationSchema: Yup.object().shape({
       name: Yup.string().required('Bạn phải nhập mục này'),
@@ -44,7 +43,6 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
       pictures: Yup.array().min(1, 'Bạn phải nhập mục này'),
       available: Yup.array().min(1, 'Bạn phải nhập mục này'),
       price: Yup.number().required('Bạn phải nhập mục này'),
-      discount: Yup.number(),
     }),
     onSubmit: (submitObject) => {
       const cleanSubmitObject = removeNull(submitObject);
@@ -53,17 +51,14 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
   });
 
   const hanldeUploadPicuturesSuccess = (imageList: Array<string>) => {
-    formik.values.pictures = imageList.map((image) => ({
-      pictureUrl: image,
-      description: formik.values.description || 'Không có mô tả',
-    }));
+    formik.values.pictures = imageList;
   };
 
   const handleAutoCompleteChange = (value: string): void => {
     formik.values.category = value;
   };
-  const handleRemoveAvailabe = (size: string): void => {
-    setAvailableList((preState) => preState.filter((available) => available.size !== size));
+  const handleRemoveAvailabe = (index: number): void => {
+    setAvailableList((preState) => preState.filter((available, i) => i !== index));
   };
 
   const openAvailableModal = (): void => {
@@ -72,7 +67,6 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
 
   const handleModalOk = ({ size, color, quantity }: { size: string; color?: string; quantity: string }): void => {
     setIsModalVisible(false);
-
     setAvailableList((preState) => [...preState, { size, color, quantity }]);
   };
 
@@ -109,6 +103,7 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
   React.useEffect(() => {
     if (createProductSuccess) {
       message.success('Tạo sản phẩm thành công');
+      dispatch(getProducts());
       handleChangeView();
     }
   }, [createProductSuccess]);
@@ -186,7 +181,7 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
                 src={CloseIcon}
                 alt="close-icon"
                 className="absolute right-0 top-0 w-4 cursor-pointer"
-                onClick={() => handleRemoveAvailabe(available.size)}
+                onClick={() => handleRemoveAvailabe(i)}
               />
               <div className="size text-sm">Size: {available.size}</div>
               {available.color && <div className="color text-sm">Màu: {available.color}</div>}
@@ -194,15 +189,6 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
             </div>
           ))}
         </div>
-        <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Giảm giá</div>
-        <Input
-          type="text"
-          name="discount"
-          placeholder="Giảm giá (%) (không bắt buộc)"
-          onChange={formik.handleChange}
-          value={formik.values.discount}
-          error={formik.errors.discount && formik.touched.discount ? formik.errors.discount : false}
-        />
         <div className="submit_buttons pt-5 flex justify-center items-center">
           <CancelButton className="mx-2" onClick={handleChangeView}>
             Hủy

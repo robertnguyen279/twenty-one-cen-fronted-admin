@@ -7,9 +7,13 @@ import { getProducts, deleteProduct } from 'actions/product.action';
 import { Table, Space, message, Popconfirm, Skeleton } from 'antd';
 import { currentcyFormatter, convertDate } from 'services/common.service';
 import { Product } from 'types';
+import EditProduct from './EditProduct';
 
-const Products = (): React.ReactElement => {
-  const [view, setView] = React.useState('view');
+const ProductPage = (): React.ReactElement => {
+  const [view, setView] = React.useState({
+    type: 'view',
+    productUrl: null,
+  });
   const [productList, setProductList] = React.useState([]);
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.productReducer.products);
@@ -51,7 +55,9 @@ const Products = (): React.ReactElement => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a className="action_text">Sửa</a>
+          <a className="action_text" onClick={() => setView({ type: 'edit', productUrl: record.urlString })}>
+            Sửa
+          </a>
           <Popconfirm
             title="Bạn có chắc muốn xóa không?"
             onConfirm={() => handleDeleteProduct(record._id)}
@@ -70,17 +76,16 @@ const Products = (): React.ReactElement => {
   };
 
   const handleChangeView = (): void => {
-    setView('view');
+    setView({ type: 'view', productUrl: null });
   };
 
   const handleCreateProductClick = (): void => {
-    setView('create');
+    setView({ type: 'create', productUrl: null });
   };
 
   React.useEffect(() => {
     dispatch(getProducts());
   }, []);
-  console.log(products);
 
   React.useEffect(() => {
     if (getProductsError) {
@@ -113,11 +118,11 @@ const Products = (): React.ReactElement => {
   }, [products]);
 
   const renderView = () => {
-    if (view === 'view') {
+    if (view && view.type === 'view') {
       return (
         <div className="animate__animated animate__fadeInRight">
           <div className="title md:pt-20 mb-10 text-center font-bold text-2xl">Sản phẩm</div>
-          <div className="flex justify-end md:pr-10">
+          <div className="flex justify-end pr-10">
             <Button className="text-sm" onClick={handleCreateProductClick}>
               Thêm sản phẩm
             </Button>
@@ -127,13 +132,13 @@ const Products = (): React.ReactElement => {
           </div>
         </div>
       );
-    } else if (view === 'create') {
+    } else if (view && view.type === 'create') {
       return <CreateProduct handleChangeView={handleChangeView} />;
     } else {
-      return <div>Edit</div>;
+      return <EditProduct handleChangeView={handleChangeView} productUrl={view.productUrl} />;
     }
   };
   return renderView();
 };
 
-export default Products;
+export default ProductPage;
