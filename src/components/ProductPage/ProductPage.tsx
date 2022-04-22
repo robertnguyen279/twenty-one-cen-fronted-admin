@@ -12,7 +12,7 @@ import EditProduct from './EditProduct';
 const ProductPage = (): React.ReactElement => {
   const [view, setView] = React.useState({
     type: 'view',
-    productId: null,
+    productUrl: null,
   });
   const [productList, setProductList] = React.useState([]);
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const ProductPage = (): React.ReactElement => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <a className="action_text" onClick={() => setView({ type: 'edit', productId: record._id })}>
+          <a className="action_text" onClick={() => setView({ type: 'edit', productUrl: record.urlString })}>
             Sửa
           </a>
           <Popconfirm
@@ -76,11 +76,11 @@ const ProductPage = (): React.ReactElement => {
   };
 
   const handleChangeView = (): void => {
-    setView({ type: 'view', productId: null });
+    setView({ type: 'view', productUrl: null });
   };
 
   const handleCreateProductClick = (): void => {
-    setView({ type: 'create', productId: null });
+    setView({ type: 'create', productUrl: null });
   };
 
   React.useEffect(() => {
@@ -135,7 +135,7 @@ const ProductPage = (): React.ReactElement => {
     } else if (view && view.type === 'create') {
       return <CreateProduct handleChangeView={handleChangeView} />;
     } else {
-      return <EditProduct handleChangeView={handleChangeView} productId={view.productId} />;
+      return <EditProduct handleChangeView={handleChangeView} productUrl={view.productUrl} />;
     }
   };
   return renderView();

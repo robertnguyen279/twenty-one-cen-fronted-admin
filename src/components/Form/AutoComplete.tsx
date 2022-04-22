@@ -7,6 +7,7 @@ const AutoCompleteComp = ({
   onChange,
   prefixIcon,
   options,
+  initialValue,
   style,
   error,
   ...config
@@ -20,6 +21,7 @@ const AutoCompleteComp = ({
         onChange={onChange}
         {...config}
         options={options}
+        defaultValue={initialValue || ''}
         className={`bg-gray-100 ${prefixIcon ? 'pr-5 pl-12' : ''} font-xl w-full h-10`}
       />
 

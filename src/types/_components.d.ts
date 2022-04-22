@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb';
 export interface IInput {
   type: string;
   onChange: (value: React.FormEvent<HTMLInputElement>) => void;
@@ -15,6 +14,7 @@ export interface IAutoComplete {
   onChange: (value: string) => void;
   style?: React.CSSProperties;
   prefixIcon?: string;
+  initialValue?: string;
   options: Array<{ value: string }>;
   placeholder?: string;
   className?: string;
@@ -70,6 +70,7 @@ export interface IAvailableModal {
 export interface IUploadImage {
   accept: string;
   error: any;
+  initialPictures?: Array<string>;
   handleUploadSuccess(itemList: Array<string>): void;
 }
 
@@ -79,5 +80,5 @@ export interface ICreateProduct {
 
 export interface IEditProduct {
   handleChangeView(): void;
-  productId: ObjectId;
+  productUrl: string;
 }

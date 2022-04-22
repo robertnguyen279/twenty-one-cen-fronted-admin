@@ -5,8 +5,8 @@ import { message } from 'antd';
 import { IUploadImage } from 'types';
 import axios from 'services/axios.service';
 
-const UploadImage = ({ accept, error, handleUploadSuccess }: IUploadImage): React.ReactElement => {
-  const [imageList, setImageList] = React.useState([]);
+const UploadImage = ({ accept, error, handleUploadSuccess, initialPictures }: IUploadImage): React.ReactElement => {
+  const [imageList, setImageList] = React.useState(initialPictures || []);
 
   const handleRemoveImage = (imgUrl: string): void => {
     setImageList((preState) => preState.filter((img) => img !== imgUrl));
