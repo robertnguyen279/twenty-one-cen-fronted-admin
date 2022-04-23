@@ -39,6 +39,11 @@ function* loginUser(action: Action<LoginUser>) {
         '21cenAuthTokens',
         JSON.stringify({ accessToken: result.data.accessToken, refreshToken: result.data.refreshToken }),
       );
+    } else {
+      localStorage.setItem(
+        '21cenAuthTokens',
+        JSON.stringify({ accessToken: result.data.accessToken, refreshToken: null }),
+      );
     }
 
     yield put(actions.getUserSuccess({ ...result.data.user }));

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'reducers/index.reducer';
 import { getProducts, deleteProduct } from 'actions/product.action';
 import { Table, Space, message, Popconfirm, Skeleton } from 'antd';
-import { currentcyFormatter, convertDate } from 'services/common.service';
+import { currencyFormatter, convertDate } from 'services/common.service';
 import { Product } from 'types';
 import EditProduct from './EditProduct';
 
@@ -36,7 +36,7 @@ const ProductPage = (): React.ReactElement => {
       title: 'Giá',
       dataIndex: 'price',
       key: 'price',
-      render: (price: number) => currentcyFormatter.format(price),
+      render: (price: number) => currencyFormatter.format(price),
     },
     {
       title: 'Giảm giá',

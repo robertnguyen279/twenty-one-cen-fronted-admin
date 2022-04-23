@@ -9,7 +9,7 @@ export const removeNull = <T>(obj: T): T => {
   return obj;
 };
 
-export const currentcyFormatter = new Intl.NumberFormat('vn-VN', {
+export const currencyFormatter = new Intl.NumberFormat('vn-VN', {
   style: 'currency',
   currency: 'VND',
   minimumFractionDigits: 0,
@@ -26,4 +26,19 @@ export const convertDate = (dateInput: Date): string => {
   day = day.length > 1 ? day : '0' + day;
 
   return day + '/' + month + '/' + year;
+};
+
+export const convertInternationalPhone = (phone: string): string => {
+  return `0${phone.slice(2)}`;
+};
+
+export const checkExpiredVoucher = (date: Date): string => {
+  const today = new Date();
+  const expiredDate = new Date(date);
+
+  if (today < expiredDate) {
+    return 'Còn hạn';
+  } else {
+    return 'Hết hạn';
+  }
 };
