@@ -1,15 +1,5 @@
 import { ObjectId } from 'mongodb';
 
-export type UserContactDetail = {
-  _id: ObjectId;
-  province: string;
-  district: string;
-  addressDetail: string;
-  phone: number;
-  firstName: string;
-  lastName: string;
-};
-
 export enum Role {
   user = 'user',
   superviser = 'superviser',
@@ -76,4 +66,47 @@ export interface Product {
   available: Array<SizeColorQuantity>;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export enum OrderStatus {
+  placed = 'placed',
+  approved = 'approved',
+  done = 'done',
+  cancelled = 'cancelled',
+}
+
+export type OrderProduct = {
+  productId: {
+    name: string;
+    price: number;
+    pictures: Array<string>;
+  };
+  item: ObjectId;
+  quantity: number;
+};
+
+export type UserContactDetail = {
+  _id: ObjectId;
+  province: string;
+  district: string;
+  addressDetail: string;
+  phone: number;
+  firstName: string;
+  lastName: string;
+};
+
+export interface Order {
+  _id: ObjectId;
+  products: Array<OrderProduct>;
+  contactDetail: UserContactDetail;
+  vouchers?: Array<{ code: string; expiresIn: Date; description: string }>;
+  orderDate: Date;
+  shipDate?: Date;
+  totalPrice: number;
+  originalPrice: number;
+  description?: string;
+  user?: ObjectId;
+  status: OrderStatus;
+  updatedAt: Date;
+  createdAt: Date;
 }

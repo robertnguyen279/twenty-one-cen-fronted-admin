@@ -82,3 +82,8 @@ export interface IEditProduct {
   handleChangeView(): void;
   productUrl: string;
 }
+
+export interface IUpdateOrder {
+  handleChangeView(): void;
+  orderId: string;
+}

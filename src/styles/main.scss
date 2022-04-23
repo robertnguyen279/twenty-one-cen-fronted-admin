@@ -19,8 +19,7 @@
 @import 'components/RightHeader';
 @import 'components/MenuWrapper';
 @import 'components/DashBoardLayout';
-
-// Pages
-@import 'pages/Home';
-@import 'pages/Users';
-@import 'pages/Products';
+@import 'components/Home';
+@import 'components/Users';
+@import 'components/Products';
+@import 'components/UpdateOrder';
