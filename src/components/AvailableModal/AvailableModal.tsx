@@ -33,7 +33,14 @@ const AvailableModal = ({ isModalVisible, handleModalOk, handleCancelModal }: IA
   };
 
   return (
-    <Modal title="Thêm chủng loại" visible={isModalVisible} onOk={handleSubmitForm} onCancel={handleCancelModal}>
+    <Modal
+      title="Thêm chủng loại"
+      visible={isModalVisible}
+      onOk={handleSubmitForm}
+      onCancel={handleCancelModal}
+      okText="Tạo"
+      cancelText="Hủy"
+    >
       <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Size</div>
       <Select defaultValue={formik.values.size} style={{ width: 120 }} onChange={handleSizeChange}>
         <Option value="XS">XS</Option>

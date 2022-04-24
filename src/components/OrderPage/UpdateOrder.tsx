@@ -113,11 +113,15 @@ const UpdateOrder = ({ handleChangeView, orderId }: IUpdateOrder): React.ReactEl
           </div>
           <div className="form_item py-3">
             <div className="form_title font-bold inline">Voucher: </div>
-            {order.vouchers.map((voucher, i) => (
-              <div className="form_content ml-3 italic" key={i}>
-                {voucher.code} - {voucher.description} - {checkExpiredVoucher(voucher.expiresIn)}
-              </div>
-            ))}
+            {order.vouchers.map((voucher, i): React.ReactElement | void => {
+              if (voucher) {
+                return (
+                  <div className="form_content ml-3 italic" key={i}>
+                    {voucher.code} - {voucher.description} - {checkExpiredVoucher(voucher.expiresIn)}
+                  </div>
+                );
+              }
+            })}
           </div>
           <div className="form_title pt-5 text-sm pb-2 text-left font-normal pl-2">Vai trò</div>
           <Select defaultValue={formik.values.status} style={{ width: 120 }} onChange={handleSelectChange}>
