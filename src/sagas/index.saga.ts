@@ -2,7 +2,8 @@ import { all } from 'redux-saga/effects';
 import userSaga from './user.saga';
 import productSaga from './product.saga';
 import orderSagas from './order.saga';
+import voucherSagas from './voucher.saga';
 
 export default function* rootSaga(): Generator {
-  yield all([...userSaga, ...productSaga, ...orderSagas]);
+  yield all([...userSaga, ...productSaga, ...orderSagas, ...voucherSagas]);
 }

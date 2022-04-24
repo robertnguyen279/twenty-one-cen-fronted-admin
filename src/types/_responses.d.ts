@@ -110,3 +110,15 @@ export interface Order {
   updatedAt: Date;
   createdAt: Date;
 }
+
+export interface Voucher {
+  _id: ObjectId;
+  code: string;
+  description: string;
+  discount: number;
+  category?: ObjectId;
+  expiresIn: Date;
+  public: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
