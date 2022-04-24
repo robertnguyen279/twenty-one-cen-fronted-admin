@@ -6,6 +6,7 @@ import { checkExpiredVoucher, convertDate } from 'services/common.service';
 import { message, Space, Tag, Popconfirm, Table, Skeleton } from 'antd';
 import { Voucher } from 'types';
 import Button from 'components/Button';
+import CreateVoucher from './CreateVoucher';
 import axios from 'services/axios.service';
 
 const VoucherPage = (): React.ReactElement => {
@@ -154,7 +155,7 @@ const VoucherPage = (): React.ReactElement => {
         </div>
       );
     } else if (view.type === 'create') {
-      return <div>Create</div>;
+      return <CreateVoucher handleChangeView={() => setView({ type: 'view', voucherId: null })} />;
     } else {
       return <div>Edit</div>;
     }

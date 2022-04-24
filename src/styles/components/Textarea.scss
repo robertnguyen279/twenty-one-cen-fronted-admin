@@ -23,6 +23,10 @@
 
   &--error {
     @extend .form__textarea;
+
+    textarea {
+      box-shadow: 0 0 0 0.7px red;
+    }
   }
 }
 
