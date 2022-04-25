@@ -87,3 +87,12 @@ export interface IUpdateOrder {
   handleChangeView(): void;
   orderId: string;
 }
+
+export interface ICreateVoucher {
+  handleChangeView(): void;
+}
+
+export interface IEditVoucher {
+  handleChangeView(): void;
+  voucherId: string;
+}
