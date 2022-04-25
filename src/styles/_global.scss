@@ -23,6 +23,11 @@
   transform: translateX(-50%);
 }
 
+.large_form {
+  @extend .form;
+  max-width: 100%;
+}
+
 @include xs {
   .form {
     max-width: 90%;
