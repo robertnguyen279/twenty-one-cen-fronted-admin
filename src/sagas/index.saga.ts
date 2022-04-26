@@ -4,7 +4,8 @@ import productSaga from './product.saga';
 import orderSagas from './order.saga';
 import voucherSagas from './voucher.saga';
 import blogSagas from './blog.saga';
+import carouselSaga from './carousel.saga';
 
 export default function* rootSaga(): Generator {
-  yield all([...userSaga, ...productSaga, ...orderSagas, ...voucherSagas, ...blogSagas]);
+  yield all([...userSaga, ...productSaga, ...orderSagas, ...voucherSagas, ...blogSagas, ...carouselSaga]);
 }
