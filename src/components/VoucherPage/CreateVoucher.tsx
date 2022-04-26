@@ -9,13 +9,13 @@ import Button from 'components/Button';
 import CancelButton from 'components/CancelButton';
 import { removeNull } from 'services/common.service';
 import { message, Select, DatePicker, Switch } from 'antd';
-import { ICreateProduct } from 'types';
+import { ICreateVoucher } from 'types';
 import { getVouchers } from 'actions/voucher.action';
 import axios from 'services/axios.service';
 
 const { Option } = Select;
 
-const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement => {
+const CreateProduct = ({ handleChangeView }: ICreateVoucher): React.ReactElement => {
   const dispatch = useDispatch();
   const categories = useSelector((state: RootState) => state.productReducer.categories);
   const getCategoriesError = useSelector((state: RootState) => state.productReducer.getCategoriesError);
@@ -45,8 +45,7 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
           dispatch(getVouchers());
           handleChangeView();
         })
-        .catch((error) => {
-          console.log(error.response.data);
+        .catch(() => {
           message.error('Tạo voucher thất bại');
         });
     },
@@ -77,7 +76,7 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
 
   return (
     <div className="animate__animated animate__fadeInRight">
-      <div className="title md:pt-20 mb-10 text-center font-bold text-2xl">Tạo sản phẩm</div>
+      <div className="title md:pt-20 mb-10 text-center font-bold text-2xl">Tạo voucher</div>
       <form onSubmit={formik.handleSubmit} className="form md:pr-10">
         <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Mô tả</div>
         <Textarea
@@ -97,7 +96,7 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
           error={formik.errors.discount && formik.touched.discount ? formik.errors.discount : false}
         />
         <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Phân loại</div>
-        <Select defaultValue="" onChange={handleSelectChange}>
+        <Select defaultValue="" onChange={handleSelectChange} style={{ width: 120 }}>
           <Option value="">Tất cả</Option>
           {categories &&
             categories.map((category, i) => (

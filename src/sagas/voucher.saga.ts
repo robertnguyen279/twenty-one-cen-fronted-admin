@@ -4,7 +4,7 @@ import * as api from 'apis/voucher.api';
 
 function* getVouchers() {
   try {
-    const result = yield call(api.getOrders);
+    const result = yield call(api.getVouchers);
     if (result.data.message.includes('success')) {
       yield put(actions.getVoucherSuccess(result.data.vouchers));
     }
@@ -17,6 +17,6 @@ function* watchGetVouchers() {
   yield takeEvery(actions.Types.GET_VOUCHERS, getVouchers);
 }
 
-const orderSagas = [fork(watchGetVouchers)];
+const voucherSagas = [fork(watchGetVouchers)];
 
-export default orderSagas;
+export default voucherSagas;

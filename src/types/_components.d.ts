@@ -3,7 +3,7 @@ export interface IInput {
   onChange: (value: React.FormEvent<HTMLInputElement>) => void;
   style?: React.CSSProperties;
   prefixIcon?: string;
-  value: string;
+  value?: string;
   placeholder?: string;
   name: string;
   className?: string;
@@ -86,4 +86,34 @@ export interface IEditProduct {
 export interface IUpdateOrder {
   handleChangeView(): void;
   orderId: string;
+}
+
+export interface ICreateVoucher {
+  handleChangeView(): void;
+}
+
+export interface IEditVoucher {
+  handleChangeView(): void;
+  voucherId: string;
+}
+
+export interface ICreateBlog {
+  handleChangeView(): void;
+}
+
+export interface IUploadSingleImage {
+  accept: string;
+  error: any;
+  initialPicture?: string;
+  handleUploadSuccess(imageUrl: string): void;
+}
+
+export interface IRichTextEditor {
+  handleEditorChange(value: string): void;
+  defaultValue?: string;
+}
+
+export interface IEditBlog {
+  handleChangeView(): void;
+  blogUrl: string;
 }

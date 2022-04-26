@@ -8,6 +8,7 @@ import { Voucher } from 'types';
 import Button from 'components/Button';
 import CreateVoucher from './CreateVoucher';
 import axios from 'services/axios.service';
+import EditVoucher from './EditVoucher';
 
 const VoucherPage = (): React.ReactElement => {
   const dispatch = useDispatch();
@@ -157,7 +158,9 @@ const VoucherPage = (): React.ReactElement => {
     } else if (view.type === 'create') {
       return <CreateVoucher handleChangeView={() => setView({ type: 'view', voucherId: null })} />;
     } else {
-      return <div>Edit</div>;
+      return (
+        <EditVoucher handleChangeView={() => setView({ type: 'view', voucherId: null })} voucherId={view.voucherId} />
+      );
     }
   };
 
