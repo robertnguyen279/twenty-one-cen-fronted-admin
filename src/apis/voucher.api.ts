@@ -1,3 +1,3 @@
 import axios from 'services/axios.service';
 
-export const getOrders = (): Promise<any> => axios.get(`/voucher`);
+export const getVouchers = (): Promise<any> => axios.get(`/voucher`);

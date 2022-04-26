@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Input } from 'components/Form';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Button from 'components/Button';
 import CancelButton from 'components/CancelButton';
 import { removeNull } from 'services/common.service';
@@ -10,10 +10,11 @@ import { message } from 'antd';
 import { ICreateBlog } from 'types';
 import { UploadSingleImage } from 'components/Form';
 import { RichTextEditor } from 'components/Form';
+import { getBlogs } from 'actions/blog.action';
 import axios from 'services/axios.service';
 
 const CreateProduct = ({ handleChangeView }: ICreateBlog): React.ReactElement => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -33,6 +34,8 @@ const CreateProduct = ({ handleChangeView }: ICreateBlog): React.ReactElement =>
         .then((response) => {
           if (response.data.statusCode === 201) {
             message.success('Tạo blog thành công');
+            dispatch(getBlogs());
+            handleChangeView();
           }
         })
         .catch(() => {
@@ -57,7 +60,7 @@ const CreateProduct = ({ handleChangeView }: ICreateBlog): React.ReactElement =>
   return (
     <div className="animate__animated animate__fadeInRight">
       <div className="title md:pt-20 mb-10 text-center font-bold text-2xl">Tạo blog</div>
-      <form onSubmit={formik.handleSubmit} className="w-2/3 md:p-10 relative large_form">
+      <form onSubmit={formik.handleSubmit} className="md:w-2/3 md:p-10 relative large_form">
         <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Tiêu đề</div>
         <Input
           type="text"

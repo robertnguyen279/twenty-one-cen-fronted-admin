@@ -122,3 +122,14 @@ export interface Voucher {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface Blog {
+  _id: ObjectId;
+  title: string;
+  urlString: string;
+  postBy: User;
+  picture: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
