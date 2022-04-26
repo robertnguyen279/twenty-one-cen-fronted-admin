@@ -110,4 +110,10 @@ export interface IUploadSingleImage {
 
 export interface IRichTextEditor {
   handleEditorChange(value: string): void;
+  defaultValue?: string;
+}
+
+export interface IEditBlog {
+  handleChangeView(): void;
+  blogUrl: string;
 }

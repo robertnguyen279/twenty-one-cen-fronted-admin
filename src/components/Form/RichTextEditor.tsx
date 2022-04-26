@@ -11,7 +11,7 @@ import { message } from 'antd';
 Quill.register('modules/imageResize', ImageResize);
 Quill.register('modules/blotFormatter', BlotFormatter);
 
-const RichTextEditor = ({ handleEditorChange }: IRichTextEditor): React.ReactElement => {
+const RichTextEditor = ({ handleEditorChange, defaultValue }: IRichTextEditor): React.ReactElement => {
   const editorRef = React.useRef(null);
 
   const handleEditorUploadImage = () => {
@@ -48,6 +48,7 @@ const RichTextEditor = ({ handleEditorChange }: IRichTextEditor): React.ReactEle
       ref={(el) => {
         editorRef.current = el;
       }}
+      defaultValue={defaultValue || ''}
       modules={{
         toolbar: {
           container: [

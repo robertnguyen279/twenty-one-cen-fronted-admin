@@ -4,8 +4,13 @@ import { message } from 'antd';
 import { IUploadSingleImage } from 'types';
 import axios from 'services/axios.service';
 
-const UploadImage = ({ accept, error, handleUploadSuccess }: IUploadSingleImage): React.ReactElement => {
-  const [imageUrl, setImageUrl] = React.useState('');
+const UploadImage = ({
+  accept,
+  error,
+  handleUploadSuccess,
+  initialPicture,
+}: IUploadSingleImage): React.ReactElement => {
+  const [imageUrl, setImageUrl] = React.useState(initialPicture || '');
 
   const hanldeUploadImage = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
