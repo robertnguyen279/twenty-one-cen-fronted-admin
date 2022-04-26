@@ -3,7 +3,7 @@ import { Action } from 'types';
 
 const INITIAL_STATE = {};
 
-export default function vouchers(state = INITIAL_STATE, action: Action): any {
+export default function blogs(state = INITIAL_STATE, action: Action): any {
   switch (action.type) {
     case Types.GET_BLOGS_SUCCESS: {
       return {

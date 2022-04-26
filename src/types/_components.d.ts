@@ -117,3 +117,12 @@ export interface IEditBlog {
   handleChangeView(): void;
   blogUrl: string;
 }
+
+export interface ICreateCarousel {
+  handleChangeView(): void;
+}
+
+export interface IEditCarousel {
+  handleChangeView(): void;
+  carouselId: string;
+}

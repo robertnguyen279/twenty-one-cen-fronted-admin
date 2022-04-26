@@ -7,6 +7,7 @@ import ProductPage from 'components/ProductPage';
 import OrderPage from 'components/OrderPage';
 import VoucherPage from 'components/VoucherPage';
 import BlogPage from 'components/BlogPage';
+import CarouselPage from 'components/CarouselPage';
 
 const HomePage = lazy(() => import('components/Home'));
 const DashBoardLayout = lazy(() => import('components/DashBoardLayout'));
@@ -22,6 +23,7 @@ export default (
         <Route exact path="/dashboard/orders" component={OrderPage} />
         <Route exact path="/dashboard/vouchers" component={VoucherPage} />
         <Route exact path="/dashboard/blogs" component={BlogPage} />
+        <Route exact path="/dashboard/carousels" component={CarouselPage} />
       </DashBoardLayout>
     </Switch>
   </Suspense>

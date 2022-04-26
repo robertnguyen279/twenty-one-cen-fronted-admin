@@ -133,3 +133,11 @@ export interface Blog {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface Carousel {
+  _id: ObjectId;
+  picture: string;
+  description: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
