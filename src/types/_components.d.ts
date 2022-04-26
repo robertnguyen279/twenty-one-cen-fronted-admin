@@ -37,6 +37,7 @@ export interface IButton {
   className?: string;
   onClick?: (e: React.MouseEvent) => void;
   isLoading?: boolean;
+  style?: React.CSSProperties;
   type?: 'submit';
 }
 

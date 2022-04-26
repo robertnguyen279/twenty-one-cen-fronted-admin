@@ -1,7 +1,7 @@
 import React from 'react';
 import { IButton } from 'types';
 
-const Button = ({ className, children, onClick, isLoading, type, ...config }: IButton): React.ReactElement => {
+const Button = ({ className, children, onClick, isLoading, type, style, ...config }: IButton): React.ReactElement => {
   return (
     <button
       className={`button${isLoading ? '--loading' : ''} text-base text-white cursor-pointer ${
@@ -9,6 +9,7 @@ const Button = ({ className, children, onClick, isLoading, type, ...config }: IB
       }`}
       onClick={onClick}
       type={type}
+      style={{ ...style }}
       {...config}
     >
       {children}
