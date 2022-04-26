@@ -123,7 +123,7 @@ const UpdateOrder = ({ handleChangeView, orderId }: IUpdateOrder): React.ReactEl
               }
             })}
           </div>
-          <div className="form_title pt-5 text-sm pb-2 text-left font-normal pl-2">Vai trò</div>
+          <div className="form_title pt-5 text-sm pb-2 text-left font-normal pl-2">Trạng thái</div>
           <Select defaultValue={formik.values.status} style={{ width: 120 }} onChange={handleSelectChange}>
             <Option value="placed">Đang chờ</Option>
             <Option value="approved">Đang giao</Option>

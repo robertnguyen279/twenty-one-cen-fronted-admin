@@ -45,3 +45,17 @@
 .ant-switch-checked {
   background-color: #1890ff !important;
 }
+
+.box_wrapper {
+  border: 1px solid gray;
+  padding: 1rem;
+  border-radius: 0.5em;
+  width: 30rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include xs {
+    width: 90% !important;
+  }
+}

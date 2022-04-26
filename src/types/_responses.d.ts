@@ -141,3 +141,10 @@ export interface Carousel {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface SiteInfo {
+  phone: number;
+  zalo: number;
+  facebook: string;
+  email: string;
+}
