@@ -1,3 +1,4 @@
+import { User } from 'types';
 export interface IInput {
   type: string;
   onChange: (value: React.FormEvent<HTMLInputElement>) => void;
@@ -126,4 +127,19 @@ export interface ICreateCarousel {
 export interface IEditCarousel {
   handleChangeView(): void;
   carouselId: string;
+}
+
+export interface IEditInfo {
+  info: {
+    zalo: number;
+    facebook: string;
+    email: string;
+    phone: number;
+  };
+  handleChangeView(): void;
+}
+
+export interface IChangeSetting {
+  user: User;
+  handleChangeView(): void;
 }

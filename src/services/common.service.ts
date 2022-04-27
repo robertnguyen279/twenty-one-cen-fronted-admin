@@ -32,6 +32,10 @@ export const convertInternationalPhone = (phone: string): string => {
   return `0${phone.slice(2)}`;
 };
 
+export const convertVietnamesePhone = (phone: string): string => {
+  return `84${phone.slice(1)}`;
+};
+
 export const checkExpiredVoucher = (date: Date): string => {
   const today = new Date();
   const expiredDate = new Date(date);
