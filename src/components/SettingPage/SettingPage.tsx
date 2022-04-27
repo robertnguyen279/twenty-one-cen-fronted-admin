@@ -128,7 +128,7 @@ const SettingPage = (): React.ReactElement => {
               <Input
                 type="password"
                 name="oldPassword"
-                placeholder="Tên"
+                placeholder="Mật khẩu cũ"
                 onChange={formik.handleChange}
                 value={formik.values.oldPassword}
                 error={formik.errors.oldPassword && formik.touched.oldPassword ? formik.errors.oldPassword : false}
@@ -137,7 +137,7 @@ const SettingPage = (): React.ReactElement => {
               <Input
                 type="password"
                 name="newPassword"
-                placeholder="Tên"
+                placeholder="Mật khẩu mới"
                 onChange={formik.handleChange}
                 value={formik.values.newPassword}
                 error={formik.errors.newPassword && formik.touched.newPassword ? formik.errors.newPassword : false}
