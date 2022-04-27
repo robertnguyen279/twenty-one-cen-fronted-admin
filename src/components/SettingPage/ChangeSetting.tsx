@@ -67,7 +67,7 @@ const ChangeSetting = ({ handleChangeView, user }: IChangeSetting): React.ReactE
           value={formik.values.lastName}
           error={formik.errors.lastName && formik.touched.lastName ? formik.errors.lastName : false}
         />
-        <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">email</div>
+        <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Email</div>
         <Input
           type="text"
           name="email"
