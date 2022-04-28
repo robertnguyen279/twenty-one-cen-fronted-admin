@@ -2,17 +2,20 @@ import React from 'react';
 import { Skeleton, Modal, message } from 'antd';
 import { convertInternationalPhone } from 'services/common.service';
 import Button from 'components/Button';
+import CancelButton from 'components/CancelButton';
 import EditInfo from './ChangeSetting';
 import { useFormik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'reducers/index.reducer';
 import { Input } from 'components/Form';
-import { getUser } from 'actions/user.action';
+import { getUser, logoutUser } from 'actions/user.action';
 import * as Yup from 'yup';
 import axios from 'services/axios.service';
+import { useHistory } from 'react-router-dom';
 
 const SettingPage = (): React.ReactElement => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [view, setView] = React.useState({ type: 'view', createdAt: new Date() });
   const user = useSelector((state: RootState) => state.userReducer.user);
   const handleChangeInfoClick = () => {
@@ -70,6 +73,23 @@ const SettingPage = (): React.ReactElement => {
   const handleCancelModal = () => {
     setIsModalVisible(false);
   };
+
+  const handleLogout = () => {
+    axios
+      .delete('/user/logout')
+      .then((response) => {
+        if (response.data.statusCode === 200) {
+          localStorage.removeItem('21cenAuthTokens');
+          dispatch(logoutUser());
+          message.success('Đăng xuất thành công');
+          history.push('/');
+        }
+      })
+      .catch(() => {
+        message.error('Đăng xuất thất bại');
+      });
+  };
+
   const renderView = () => {
     if (view.type === 'view') {
       return (
@@ -115,6 +135,15 @@ const SettingPage = (): React.ReactElement => {
           >
             Sửa thông tin
           </Button>
+          <br />
+          <CancelButton
+            className="mt-5 relative left-1/2"
+            style={{ transform: 'translateX(-50%)' }}
+            onClick={handleLogout}
+          >
+            Đăng xuất
+          </CancelButton>
+
           <Modal
             title="Đổi mật khẩu"
             visible={isModalVisible}

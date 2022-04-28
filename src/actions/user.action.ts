@@ -16,6 +16,7 @@ export const Types = {
   CREATE_USER_BY_ADMIN: 'user/create-user-by-admin',
   CREATE_USER_BY_ADMIN_SUCCESS: 'user/create-user-by-admin-success',
   CREATE_USER_BY_ADMIN_ERROR: 'user/create-user-by-admin-error',
+  LOGOUT_USER: 'user/logout-user',
 };
 
 export const getUser = (): Action => ({
@@ -107,4 +108,8 @@ export const deleteUserSuccess = (): Action => ({
 export const deleteUserError = (message: string): Action<Message> => ({
   type: Types.DELETE_USER_ERROR,
   payload: { message },
+});
+
+export const logoutUser = (): Action => ({
+  type: Types.LOGOUT_USER,
 });

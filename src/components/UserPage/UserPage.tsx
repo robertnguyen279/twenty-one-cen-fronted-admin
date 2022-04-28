@@ -104,6 +104,7 @@ const UserPage = (): React.ReactElement => {
   useEffect(() => {
     if (deleteUserError) {
       message.error('Xóa người dùng thất bại');
+      dispatch(getUsers());
     }
   }, [deleteUserError]);
 
