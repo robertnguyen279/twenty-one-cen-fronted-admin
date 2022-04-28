@@ -12,6 +12,8 @@ import { loginUser, getUser } from 'actions/user.action';
 import { useHistory } from 'react-router-dom';
 import LoadingScreen from 'components/LoadingScreen';
 import { message } from 'antd';
+import validator from 'validator';
+import { convertVietnamesePhone } from 'services/common.service';
 
 const Home = (): React.ReactElement => {
   const dispatch = useDispatch();
@@ -32,7 +34,12 @@ const Home = (): React.ReactElement => {
       password: Yup.string().min(6, 'Mật khẩu quá ngắn').max(20, 'Mật khẩu quá dài').required('Bạn phải nhập mục này'),
     }),
     onSubmit: ({ emailOrPhone, password, remember }) => {
-      dispatch(loginUser({ emailOrPhone, password, remember }));
+      if (validator.isEmail(emailOrPhone)) {
+        dispatch(loginUser({ emailOrPhone, password, remember }));
+      } else {
+        const vietnamesePhone = convertVietnamesePhone(emailOrPhone);
+        dispatch(loginUser({ emailOrPhone: vietnamesePhone, password, remember }));
+      }
     },
   });
 

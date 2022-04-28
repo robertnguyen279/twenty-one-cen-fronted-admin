@@ -32,6 +32,7 @@ export default function users(state = INITIAL_STATE, action: Action): any {
         createUserByAdminError: null,
         createUserByAdminSuccess: null,
         deleteUserSuccess: null,
+        deleteUserError: null,
       };
     }
     case Types.GET_USERS_ERROR: {
@@ -62,6 +63,12 @@ export default function users(state = INITIAL_STATE, action: Action): any {
       return {
         ...state,
         createUserByAdminSuccess: `Create user by admin successfully ${Date.now()}`,
+      };
+    }
+    case Types.LOGOUT_USER: {
+      return {
+        ...state,
+        user: null,
       };
     }
 
