@@ -1,7 +1,7 @@
 import React from 'react';
 import CloseIcon from 'assets/icons/close-svgrepo-com.svg';
 import compressImage from 'services/compress.service';
-import { message } from 'antd';
+import { message, Image } from 'antd';
 import { IUploadImage } from 'types';
 import axios from 'services/axios.service';
 
@@ -55,7 +55,7 @@ const UploadImage = ({ accept, error, handleUploadSuccess, initialPictures }: IU
                 className="absolute right-0 top-0 w-4 cursor-pointer"
                 onClick={() => handleRemoveImage(imgUrl)}
               />
-              <img src={imgUrl} alt="upload-image" />
+              <Image src={imgUrl} alt="upload-image" />
             </div>
           ))}
       </div>

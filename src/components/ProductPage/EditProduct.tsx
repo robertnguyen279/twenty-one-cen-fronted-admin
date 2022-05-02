@@ -32,6 +32,7 @@ const EditProduct = ({ handleChangeView, productUrl }: IEditProduct): React.Reac
   const formik = useFormik({
     initialValues: {
       name: '',
+      code: '',
       description: '',
       category: '',
       price: '',
@@ -41,6 +42,7 @@ const EditProduct = ({ handleChangeView, productUrl }: IEditProduct): React.Reac
     },
     validationSchema: Yup.object().shape({
       name: Yup.string().required('Bạn phải nhập mục này'),
+      code: Yup.string().required('Bạn phải nhập mục này'),
       description: Yup.string().required('Bạn phải nhập mục này'),
       category: Yup.string().required('Bạn phải nhập mục này'),
       pictures: Yup.array().min(1, 'Bạn phải nhập mục này'),
@@ -93,6 +95,7 @@ const EditProduct = ({ handleChangeView, productUrl }: IEditProduct): React.Reac
       .then((response) => {
         const product = response.data.product;
         formik.values.name = product.name;
+        formik.values.code = product.code;
         formik.values.description = product.description;
         formik.values.category = product.category.name;
         formik.values.pictures = product.pictures;
@@ -163,6 +166,15 @@ const EditProduct = ({ handleChangeView, productUrl }: IEditProduct): React.Reac
             onChange={formik.handleChange}
             value={formik.values.name}
             error={formik.errors.name && formik.touched.name ? formik.errors.name : false}
+          />
+          <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Code</div>
+          <Input
+            type="text"
+            name="code"
+            placeholder="Mã sản phẩm"
+            onChange={formik.handleChange}
+            value={formik.values.code}
+            error={formik.errors.code && formik.touched.code ? formik.errors.code : false}
           />
           <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Mô tả sản phẩm</div>
           <Textarea
