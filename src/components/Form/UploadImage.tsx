@@ -52,7 +52,7 @@ const UploadImage = ({ accept, error, handleUploadSuccess, initialPictures }: IU
               <img
                 src={CloseIcon}
                 alt="close-icon"
-                className="absolute right-0 top-0 w-4 cursor-pointer"
+                className="absolute right-0 top-0 w-4 cursor-pointer z-10"
                 onClick={() => handleRemoveImage(imgUrl)}
               />
               <Image src={imgUrl} alt="upload-image" />

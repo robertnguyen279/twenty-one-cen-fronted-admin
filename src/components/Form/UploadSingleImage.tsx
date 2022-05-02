@@ -1,6 +1,6 @@
 import React from 'react';
 import compressImage from 'services/compress.service';
-import { message } from 'antd';
+import { message, Image } from 'antd';
 import { IUploadSingleImage } from 'types';
 import axios from 'services/axios.service';
 
@@ -46,7 +46,7 @@ const UploadImage = ({
       <input type="file" accept={accept} onChange={hanldeUploadImage} className="ml-2" />
       <p className="relative text-xs text-red-600">{error}</p>
       <div className="img_wrapper mt-3 flex flex-wrap justify-start">
-        {imageUrl && <img src={imageUrl} alt="upload-image" />}
+        {imageUrl && <Image src={imageUrl} alt="upload-image" />}
       </div>
     </div>
   );
