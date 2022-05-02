@@ -30,19 +30,23 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
   const formik = useFormik({
     initialValues: {
       name: '',
+      code: '',
       description: '',
       category: '',
       price: '',
+      discount: '',
       pictures: [],
       available: [],
     },
     validationSchema: Yup.object().shape({
       name: Yup.string().required('Bạn phải nhập mục này'),
+      code: Yup.string().required('Bạn phải nhập mục này'),
       description: Yup.string().required('Bạn phải nhập mục này'),
       category: Yup.string().required('Bạn phải nhập mục này'),
       pictures: Yup.array().min(1, 'Bạn phải nhập mục này'),
       available: Yup.array().min(1, 'Bạn phải nhập mục này'),
       price: Yup.number().required('Bạn phải nhập mục này'),
+      discount: Yup.number().min(0).max(100),
     }),
     onSubmit: (submitObject) => {
       const cleanSubmitObject = removeNull(submitObject);
@@ -129,6 +133,15 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
           value={formik.values.name}
           error={formik.errors.name && formik.touched.name ? formik.errors.name : false}
         />
+        <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Code</div>
+        <Input
+          type="text"
+          name="code"
+          placeholder="Mã sản phẩm"
+          onChange={formik.handleChange}
+          value={formik.values.code}
+          error={formik.errors.code && formik.touched.code ? formik.errors.code : false}
+        />
         <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Mô tả sản phẩm</div>
         <Textarea
           name="description"
@@ -158,6 +171,15 @@ const CreateProduct = ({ handleChangeView }: ICreateProduct): React.ReactElement
           onChange={formik.handleChange}
           value={formik.values.price}
           error={formik.errors.price && formik.touched.price ? formik.errors.price : false}
+        />
+        <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Giảm giá</div>
+        <Input
+          type="text"
+          name="discount"
+          placeholder="Giảm giá (%) (Không bắt buộc)"
+          onChange={formik.handleChange}
+          value={formik.values.discount}
+          error={formik.errors.discount && formik.touched.discount ? formik.errors.discount : false}
         />
         <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Chủng loại</div>
         <div className="add_available flex ml-3 cursor-pointer text-blue" onClick={openAvailableModal}>

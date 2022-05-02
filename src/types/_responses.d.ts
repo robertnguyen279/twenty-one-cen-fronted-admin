@@ -81,7 +81,7 @@ export type OrderProduct = {
     price: number;
     pictures: Array<string>;
   };
-  item: ObjectId;
+  item: any;
   quantity: number;
 };
 

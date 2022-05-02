@@ -81,8 +81,10 @@ const SettingPage = (): React.ReactElement => {
         if (response.data.statusCode === 200) {
           localStorage.removeItem('21cenAuthTokens');
           dispatch(logoutUser());
-          message.success('Đăng xuất thành công');
-          history.push('/');
+          setTimeout(() => {
+            message.success('Đăng xuất thành công');
+            history.push('/');
+          }, 300);
         }
       })
       .catch(() => {

@@ -94,11 +94,11 @@ const UpdateOrder = ({ handleChangeView, orderId }: IUpdateOrder): React.ReactEl
             {order.products.map((product, i) => (
               <div className="ml-3 flex items-center my-3" key={i}>
                 <div className="form_product_img px-3">
-                  <img src={product.productId.pictures[0]} alt="product-img" />
+                  <img src={product.item.product.pictures[0]} alt="product-img" />
                 </div>
                 <div className="form_product_text italic">
-                  {product.productId.name} - số lượng ({product.quantity}) - giá (
-                  {currencyFormatter.format(product.productId.price)})
+                  {product.item.product.name} - số lượng ({product.quantity}) - giá (
+                  {currencyFormatter.format(product.item.product.price)})
                 </div>
               </div>
             ))}

@@ -24,6 +24,7 @@ const CreateProduct = ({ handleChangeView, voucherId }: IEditVoucher): React.Rea
 
   const formik = useFormik({
     initialValues: {
+      code: '',
       description: '',
       discount: '',
       category: '',
@@ -31,6 +32,7 @@ const CreateProduct = ({ handleChangeView, voucherId }: IEditVoucher): React.Rea
       public: false,
     },
     validationSchema: Yup.object().shape({
+      code: Yup.string().required('Bạn phải nhập mục này'),
       description: Yup.string().required('Bạn phải nhập mục này'),
       discount: Yup.number().required('Bạn phải nhập mục này'),
       category: Yup.string(),
@@ -75,7 +77,7 @@ const CreateProduct = ({ handleChangeView, voucherId }: IEditVoucher): React.Rea
       .then((response) => {
         if (response.data.statusCode === 200) {
           const voucher = response.data.voucher;
-          console.log(voucher);
+          formik.values.code = voucher.code;
           formik.values.description = voucher.description;
           formik.values.discount = voucher.discount;
           formik.values.category = voucher.category._id || '';
@@ -102,6 +104,15 @@ const CreateProduct = ({ handleChangeView, voucherId }: IEditVoucher): React.Rea
         <Skeleton />
       ) : (
         <form onSubmit={formik.handleSubmit} className="form md:pr-10">
+          <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Code</div>
+          <Input
+            type="text"
+            name="code"
+            placeholder="Mã giảm giá"
+            onChange={formik.handleChange}
+            value={formik.values.code}
+            error={formik.errors.code && formik.touched.code ? formik.errors.code : false}
+          />
           <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Mô tả</div>
           <Textarea
             name="description"

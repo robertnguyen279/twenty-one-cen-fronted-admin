@@ -22,6 +22,7 @@ const CreateProduct = ({ handleChangeView }: ICreateVoucher): React.ReactElement
 
   const formik = useFormik({
     initialValues: {
+      code: '',
       description: '',
       discount: '',
       category: '',
@@ -29,6 +30,7 @@ const CreateProduct = ({ handleChangeView }: ICreateVoucher): React.ReactElement
       public: false,
     },
     validationSchema: Yup.object().shape({
+      code: Yup.string().required('Bạn phải nhập mục này'),
       description: Yup.string().required('Bạn phải nhập mục này'),
       discount: Yup.number().required('Bạn phải nhập mục này'),
       category: Yup.string(),
@@ -78,6 +80,15 @@ const CreateProduct = ({ handleChangeView }: ICreateVoucher): React.ReactElement
     <div className="animate__animated animate__fadeInRight">
       <div className="title md:pt-20 mb-10 text-center font-bold text-2xl">Tạo voucher</div>
       <form onSubmit={formik.handleSubmit} className="form md:pr-10">
+        <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Code</div>
+        <Input
+          type="text"
+          name="code"
+          placeholder="Mã giảm giá"
+          onChange={formik.handleChange}
+          value={formik.values.code}
+          error={formik.errors.code && formik.touched.code ? formik.errors.code : false}
+        />
         <div className="form_title pt-3 text-sm pb-2 text-left font-normal pl-2">Mô tả</div>
         <Textarea
           name="description"
