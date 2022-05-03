@@ -65,6 +65,12 @@ export interface IEditUser {
 
 export interface IAvailableModal {
   isModalVisible: boolean;
+  initialValues?: {
+    _id?: string;
+    size: string;
+    quantity: string;
+    color?: string;
+  };
   handleModalOk({ size, color, quantity }: { size: string; color: string; quantity: string }): void;
   handleCancelModal(): void;
 }
